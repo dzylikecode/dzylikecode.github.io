@@ -3,6 +3,7 @@
 ## tutorial
 
 - [The Modern JavaScript Tutorial](https://javascript.info/)
+- [Learn to Code](https://www.w3schools.com/)
 
 ## manual
 
