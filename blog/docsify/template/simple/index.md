@@ -1,0 +1,75 @@
+# index-html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+    />
+    <!-- latex -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"
+    />
+    <!-- dark mode -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css"
+      title="docsify-darklight-theme"
+      type="text/css"
+    />
+    <!-- mind map -->
+    <!-- markmap is based on d3 -->
+    <script src="//unpkg.com/d3@3/d3.min.js"></script>
+    <script src="//unpkg.com/markmap@latest/lib/d3-flextree.js"></script>
+    <script src="//unpkg.com/markmap@latest/lib/view.mindmap.js"></script>
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/markmap@latest/style/view.mindmap.css"
+    />
+    <!-- slidebar collapse -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        name: "",
+        repo: "",
+        loadSidebar: true,
+        mindmap: {
+          markmap: {
+            preset: "colorful", // or default
+            linkShape: "diagonal", // or bracket
+          },
+        },
+      };
+    </script>
+    <!-- Docsify v4 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <!-- docsify-katex for latex -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+    <!-- dark mode -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
+    <!-- copy to clipboard -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+    <!-- markmap for mind map -->
+    <script src="//unpkg.com/docsify-mindmap/dist/docsify-mindmap.min.js"></script>
+    <!-- slidebar collapse -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  </body>
+</html>
+```
