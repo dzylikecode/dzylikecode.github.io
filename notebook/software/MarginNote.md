@@ -6,6 +6,8 @@
 
 转化到 thought, 然后转为 markdown
 
+书名作为工作区, 完成一个章节, 就将这个章节的内容提出来
+
 ## Add-ons
 
 - [DeepL Translator](https://bbs.marginnote.cn/t/topic/6113)
