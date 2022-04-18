@@ -1,13 +1,15 @@
-## 关于笔记仓库
+## content
 
-- master
+### latex
 
-> 主分支, 最终显示
+- 很顺畅:[myscript](http://webdemo.myscript.com/views/math/index.html)
+- Mathpix
+- [Detexify](http://detexify.kirelabs.org/classify.html)
+- MathKey
 
-- doc
+笔记追求一体化
 
-> 所有 markdown 都在这编写
+eg.
 
-- local-show
-
-> 用来本地显示效果, 合理再合并到 master
+- margin note 做笔记, 然后直接导出为 markdown
+- 微信读书里面直接做笔记, 然后直接导出为 markdown
