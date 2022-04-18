@@ -50,6 +50,7 @@
         name: "", // 目录的标题
         repo: "", // 右上角的挂件
         loadSidebar: true,
+        subMaxLevel: 3, // 子目录最大层级, 有助于显示 markdown 的层级
         auto2top: true, // 自动跳转至顶部
         mindmap: {
           markmap: {
