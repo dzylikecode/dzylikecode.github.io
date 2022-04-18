@@ -47,9 +47,10 @@
     <div id="app"></div>
     <script>
       window.$docsify = {
-        name: "",
-        repo: "",
+        name: "", // 目录的标题
+        repo: "", // 右上角的挂件
         loadSidebar: true,
+        auto2top: true, // 自动跳转至顶部
         mindmap: {
           markmap: {
             preset: "colorful", // or default
