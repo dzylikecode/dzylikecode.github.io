@@ -1,7 +1,13 @@
-- 笔记
-  - [github 与笔记](/notebook/assets/repo-struct.md)
 - blog
   - [介绍](/blog/docsify/README.md)
   - template
     - [simple](/blog/docsify/template/simple/README.md)
   - [feature](/blog/docsify/feature.md)
+  - [watchlist](/blog/docsify/watchlist.md)
+- 笔记
+  - [介绍](/notebook/README.md)
+  - [笔记的 git 结构](/notebook/repo-struct.md)
+  - [笔记的时间结构](/notebook/time-struct.md)
+  - [笔记的记录结构](/notebook/md-struct.md)
+  - pattern
+    - [MarginNote](/notebook/pattern/MarginNote.md)
