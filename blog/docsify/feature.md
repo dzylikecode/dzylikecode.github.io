@@ -2,85 +2,88 @@
 
 - [docsify 的配置 + 全插件列表](https://www.itrma.com/75.html)
 
+## 描述结构
+
+- 初衷
+
+  为方便复制,将配置分解为可以直接复制的块
+
+- 结构
+
+  ```html
+  <head>
+    <!-- head 部分 -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      /*!-- docsify 的部分 --*/
+      window.$docsify = {};
+    </script>
+    <script src="//unpkg.com/docsify@4/lib/docsify.min.js"></script>
+    <!-- body 部分 -->
+  </body>
+  ```
+
 ## latex
 
-```html
-<head>
-  <!-- here !!!!! -->
+- head
+
+  ```html
+  <!-- latex -->
   <link
     rel="stylesheet"
     href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"
   />
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: "",
-      repo: "",
-    };
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- here !!!!! -->
+  ```
+
+- body
+
+  ```html
+  <!-- latex -->
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
-</body>
-```
+  ```
 
 ## dark mode
 
-```html
-<head>
-  <!-- here !!!!! -->
+- head
+
+  ```html
+  <!-- dark mode -->
   <link
     rel="stylesheet"
     href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css"
     title="docsify-darklight-theme"
     type="text/css"
   />
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: "",
-      repo: "",
-    };
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- here !!!!! -->
+  ```
+
+- body
+
+  ```html
+  <!-- dark mode -->
   <script
     src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"
     type="text/javascript"
   ></script>
-</body>
-```
+  ```
 
 ## copy to clipboard
 
-```html
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: "",
-      repo: "",
-    };
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- here !!!!! -->
+- body
+
+  ```html
+  <!-- copy to clipboard -->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-</body>
-```
+  ```
 
 ## mind map
 
-- [docsify-mindmap](https://github.com/up9cloud/docsify-mindmap)
+- 参考:[docsify-mindmap](https://github.com/up9cloud/docsify-mindmap)
 
-```html
-<head>
+- head
+
+  ```html
   <!-- markmap is based on d3, so must load those files first. -->
   <script src="//unpkg.com/d3@3/d3.min.js"></script>
   <script src="//unpkg.com/markmap@latest/lib/d3-flextree.js"></script>
@@ -89,9 +92,11 @@
     rel="stylesheet"
     href="//unpkg.com/markmap@latest/style/view.mindmap.css"
   />
-</head>
-<body>
-  <div id="app"></div>
+  ```
+
+- docsify
+
+  ```html
   <script>
     window.$docsify = {
       mindmap: {
@@ -103,23 +108,30 @@
       },
     };
   </script>
-  <script src="//unpkg.com/docsify@4/lib/docsify.min.js"></script>
+  ```
+
+- body
+
+  ```html
+  <!-- markmap -->
   <script src="//unpkg.com/docsify-mindmap/dist/docsify-mindmap.min.js"></script>
-</body>
-```
+  ```
 
 ## slidebar collapse
 
-```html
-<head>
-  <!--侧边栏目录展开和折叠-->
+- head
+
+  ```html
+  <!-- slidebar collapse -->
   <link
     rel="stylesheet"
     href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css"
   />
-</head>
-<body>
-  <div id="app"></div>
+  ```
+
+- docsify
+
+  ```html
   <script>
     window.$docsify = {
       loadSidebar: true, // 自定义侧边栏
@@ -127,7 +139,11 @@
       sidebarDisplayLevel: 1, // 侧边栏显示层级 not need
     };
   </script>
-  <script src="//unpkg.com/docsify@4/lib/docsify.min.js"></script>
+  ```
+
+- body
+
+  ```html
+  <!-- slidebar collapse -->
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
-</body>
-```
+  ```

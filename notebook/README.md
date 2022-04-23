@@ -1,15 +1,31 @@
-## content
+# note
 
-### latex
+- 初衷
 
-- 很顺畅:[myscript](http://webdemo.myscript.com/views/math/index.html)
-- Mathpix
-- [Detexify](http://detexify.kirelabs.org/classify.html)
-- MathKey
+  - 可分享
 
-笔记追求一体化
+  - 可编辑
 
-eg.
+  - 降低成本
 
-- margin note 做笔记, 然后直接导出为 markdown
-- 微信读书里面直接做笔记, 然后直接导出为 markdown
+    通过`模式化过程`和`利用其他人的笔记进行改进`
+
+  - 改变重心
+
+    由`存储知识->复现知识`, 变成`流水模式->重视关系`
+
+    充分利用网络链接, 失效也无妨, 有`搜索的关键字`相当于有一个接口
+
+## 倾向
+
+- 简洁
+
+  简洁, 倾向于抽象, 倾向于稳定
+
+- 闭包
+
+  一体化, MarginNote 尽量在 MarginNote 内完成, 微信读书的笔记, 尽量在微信读书完成
+
+## pattern
+
+- [MarginNote](/notebook/pattern/MarginNote.md)

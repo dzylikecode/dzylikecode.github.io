@@ -1,16 +1,10 @@
-# simple-theme
-
-## step
-
-- execute `docsify init ./docs` to get necessary files
-- copy [template-index](/blog/docsify/template/simple/index.md) to `index.html`
+# metion
 
 ## configuration
 
-- gitignore
+- gitigonre
 
   ```gitignore
-  # metion
   .configs/
   .Archive/
   .markeditor/
@@ -30,6 +24,4 @@
   /__wechat.json
   /*.sqlite3
   .db/
-  # vs code
-  .vscode/
   ```
