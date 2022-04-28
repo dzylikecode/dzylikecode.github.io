@@ -147,3 +147,42 @@
   <!-- slidebar collapse -->
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
   ```
+
+## mermaid
+
+- head
+
+  ```html
+  <!-- mermaid -->
+  <link
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css"
+  />
+  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  ```
+
+- docsify
+
+  ```html
+  <script>
+    var num = 0;
+    mermaid.initialize({ startOnLoad: false });
+
+    window.$docsify = {
+      markdown: {
+        renderer: {
+          code: function (code, lang) {
+            if (lang === "mermaid") {
+              return (
+                '<div class="mermaid">' +
+                mermaid.render("mermaid-svg-" + num++, code) +
+                "</div>"
+              );
+            }
+            return this.origin.code.apply(this, arguments);
+          },
+        },
+      },
+    };
+  </script>
+  ```
