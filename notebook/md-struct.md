@@ -1,5 +1,11 @@
 # markdown 结构与规范
 
+## syntax
+
+- [mermaid](https://github.com/mermaid-js/mermaid)
+
+  - [tutorial](https://mermaid-js.github.io/mermaid/#/)
+
 ## 规范
 
 - 利用`#` 和 `##` 展现主要层级
