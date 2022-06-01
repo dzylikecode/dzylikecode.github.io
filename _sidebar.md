@@ -11,3 +11,5 @@
   - [笔记的记录结构](/notebook/md-struct.md)
   - pattern
     - [MarginNote](/notebook/pattern/MarginNote.md)
+- study
+  - [大学时光](/study/college.md)
