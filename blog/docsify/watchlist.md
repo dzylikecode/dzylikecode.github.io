@@ -12,3 +12,7 @@ not work
 - [edit 插件](https://github.com/njleonzhang/docsify-edit-on-github)
 - [参考插件](https://github.com/njleonzhang/docsify-edit-on-github/blob/master/index.js)
 - [markmap](https://github.com/gera2ld/markmap/tree/master/packages/markmap-autoloader#markmap-autoloader)
+
+## 一个 server
+
+更进一步的, 我想的是只有一个 server 仓库, 其他都是文档仓库
