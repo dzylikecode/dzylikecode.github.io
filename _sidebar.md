@@ -2,6 +2,7 @@
   - [介绍](/blog/docsify/README.md)
   - template
     - [simple](/blog/docsify/template/simple/README.md)
+    - [index](/blog/docsify/template/simple/index.md)
   - [feature](/blog/docsify/feature.md)
   - [watchlist](/blog/docsify/watchlist.md)
 - 笔记
