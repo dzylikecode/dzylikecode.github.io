@@ -1,12 +1,3 @@
-- blog
-  - [介绍](/blog/docsify/README.md)
-- 笔记
-  - [介绍](/notebook/README.md)
-  - [笔记的 git 结构](/notebook/repo-struct.md)
-  - [笔记的时间结构](/notebook/time-struct.md)
-  - [笔记的记录结构](/notebook/md-struct.md)
-  - pattern
-    - [MarginNote](/notebook/pattern/MarginNote.md)
 - study
   - [大学时光](/study/college.md)
 - IT
@@ -15,3 +6,11 @@
       - [搭建](IT/blog/docsify/README.md)
       - [插件](IT/blog/docsify/feature.md)
     - 笔记
+  - 软件
+    - [git](IT/software/git.md)
+    - [vscode](IT/software/vscode.md)
+    - [windows](IT/software/windows.md)
+- entertainment
+  - [music](entertainment/music.md)
+  - [video](entertainment/video/README.md)
+  - [game](entertainment/game/README.md)

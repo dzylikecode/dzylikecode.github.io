@@ -26,6 +26,10 @@
 
   一体化, MarginNote 尽量在 MarginNote 内完成, 微信读书的笔记, 尽量在微信读书完成
 
-## pattern
+## 演化
 
-- [MarginNote](/notebook/pattern/MarginNote.md)
+- 尽量一个文件写
+
+  不要太分散了, 文件杂乱, 管理起来很困难
+
+- 文件链接给出后紧接着写些摘要

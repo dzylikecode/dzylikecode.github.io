@@ -87,3 +87,16 @@
 - 一个 server
 
   更进一步的, 我想的是只有一个 server 仓库, 其他都是文档仓库
+
+- 运行 js
+
+  - [将 MARKDOWN 代码块转换成可运行实例](https://smohan.net/blog/xbbqk9)
+  - [markrun-docsify](https://github.com/markrun/markrun-docsify)
+
+    总之我运行不了
+
+  - [markrun](https://github.com/markrun/markrun)
+
+    - [preview](https://markrun.github.io/markrun/)
+
+      我也想实现这样的效果
