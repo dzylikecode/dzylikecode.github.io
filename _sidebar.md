@@ -1,10 +1,5 @@
 - blog
   - [介绍](/blog/docsify/README.md)
-  - template
-    - [simple](/blog/docsify/template/simple/README.md)
-    - [index](/blog/docsify/template/simple/index.md)
-  - [feature](/blog/docsify/feature.md)
-  - [watchlist](/blog/docsify/watchlist.md)
 - 笔记
   - [介绍](/notebook/README.md)
   - [笔记的 git 结构](/notebook/repo-struct.md)
@@ -14,3 +9,9 @@
     - [MarginNote](/notebook/pattern/MarginNote.md)
 - study
   - [大学时光](/study/college.md)
+- IT
+  - blog
+    - docsify
+      - [搭建](IT/blog/docsify/README.md)
+      - [插件](IT/blog/docsify/feature.md)
+    - 笔记

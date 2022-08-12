@@ -14,15 +14,16 @@
 
   - [Python 编程从入门到实践](https://github.com/dzylikecode/Python_Tutorial)
 
-  - [莫烦 python](https://github.com/dzylikecode/Python-Learning)
+  - [莫烦 python](https://dzylikecode.github.io/Python-Learning/#/)
 
 - javascript
 
   - [javascript](https://dzylikecode.github.io/javascript-learning/#/)
+  - [web 手册](https://developer.mozilla.org/zh-CN/docs/Learn)
 
 - japanese
 
-  - [日语学习](https://github.com/dzylikecode/Japanese-Learning)
+  - [日语学习](https://dzylikecode.github.io/Japanese-Learning/#/)
 
 ### 生物
 
@@ -30,7 +31,11 @@
 
 ### 数学
 
-- [现代数学-李群-李代数](https://github.com/dzylikecode/Rotational-Algebra-and-Lie-Group-Lie-Algebra)
+- [现代数学-李群-李代数](https://dzylikecode.github.io/Rotational-Algebra-and-Lie-Group-Lie-Algebra/#/)
+
+## 学习网站
+
+- [Coursera](https://www.coursera.org/)
 
 ## 准备
 
