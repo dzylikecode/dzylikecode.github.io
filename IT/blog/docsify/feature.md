@@ -186,3 +186,112 @@
     };
   </script>
   ```
+
+## anchor
+
+- docsify
+
+  ```js
+  window.$docsify = {
+    plugins: [
+      function (hook, vm) {
+        hook.beforeEach(function (html) {
+          return html.replace(
+            /<a\s+href\s*=\s*['|"]#(.*?)['|"].*?>/gi,
+            (m, g1) => m.replace(g1, vm.route.path + "#" + g1)
+          );
+        });
+      },
+    ],
+  };
+  ```
+
+  目的是替换`mermaid`里面的链接
+
+  - 副作用
+
+    会把被反引号, txt 等包围的不是真正的 html 标签`<a href = "#anchor">`替换为`<a href = "path#anchor">`
+
+## mermaid-latex
+
+- head
+
+  ```html
+  <!-- mermaid-latex -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+    integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+    crossorigin="anonymous"
+  ></script>
+  ```
+
+- body
+
+  修改`mermaid`的函数配置
+
+  ```js
+  window.$docsify = {
+    markdown: {
+      renderer: {
+        code: function (code, lang) {
+          if (lang === "mermaid") {
+            let transLatex = code.replace(/c194a9ef(.*?)c194a9ef/g, (m, g1) =>
+              katex.renderToString(g1).replace(/"/g, `'`)
+            );
+            return (
+              '<div class="mermaid">' +
+              mermaid.render("mermaid-svg-" + num++, transLatex) +
+              "</div>"
+            );
+          }
+          return this.origin.code.apply(this, arguments);
+        },
+      },
+    },
+  };
+  ```
+
+  - 缺点
+
+    有些还是显示得不是很完整(有的时候, 比较奇怪, 需要多多刷新)
+
+## search
+
+- body
+
+  ```html
+  <!-- search -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+  ```
+
+## zoom image
+
+- body
+
+  ```html
+  <!-- zoom image -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+  ```
+
+## run js code
+
+- [doc](https://jhildenbiddle.github.io/docsify-plugin-runkit/#/)
+- [repo](https://github.com/jhildenbiddle/docsify-plugin-runkit)
+
+- head
+
+  ```js
+  window.$docsify = {
+    // ...
+    runkit: {
+      // Options...
+    },
+  };
+  ```
+
+- body
+
+  ```html
+  <!-- docsify-plugin-runkit -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-runkit@1"></script>
+  ```

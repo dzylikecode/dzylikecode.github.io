@@ -38,6 +38,12 @@
 
   - Image preview
 
+- js
+
+  - auto rename tag
+
+    vscode 内建`Linked Editing`
+
 ### 尝试
 
 - Markdown+Math

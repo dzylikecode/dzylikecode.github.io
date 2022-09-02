@@ -19,7 +19,6 @@
 - javascript
 
   - [javascript](https://dzylikecode.github.io/javascript-learning/#/)
-  - [web 手册](https://developer.mozilla.org/zh-CN/docs/Learn)
 
 - japanese
 
@@ -32,6 +31,7 @@
 ### 数学
 
 - [现代数学-李群-李代数](https://dzylikecode.github.io/Rotational-Algebra-and-Lie-Group-Lie-Algebra/#/)
+- [数学建模](https://dzylikecode.github.io/Math-Modeling/#/)
 
 ## 学习网站
 

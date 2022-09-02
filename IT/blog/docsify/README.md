@@ -3,6 +3,8 @@
 - repository: https://github.com/docsifyjs/docsify
 - tutorial: https://docsify.js.org/#/quickstart
 
+  - [docsify-js-tutorial](https://github.com/MichaelCurrin/docsify-js-tutorial)
+
 ## template
 
 ### simple
@@ -46,26 +48,23 @@
 
   - copy below to `index.html`
 
-[](simple.html ":include :type=code html")
+[](version/simple.html ":include :type=code html")
 
-## 增强语法
+### nice-theme
 
-- [嵌入文件](https://angry-swanson-b4e47b.netlify.app/embed-files)
+- change
 
-  - 显示内容 => `[filename](_media/example.md ':include')`
-  - 支持不同类型
+  - 修改
 
-    - iframe => .html, .htm
+    - 主题
+    - mermaid 支持连接,latex
 
-      `[filename](_media/example.md ':include :type=iframe')`
+  - 添加
 
-    - markdown => .markdown, .md
-    - audio => .mp3
-    - video => .mp4, .ogg
-    - code => other file extension
+    - 搜索
+    - 放大图片
 
-  - 显示代码块 => `[](_media/example.html ':include :type=code js')`
-  - 设置属性 => `[cinwell website](https://cinwell.com ':include :type=iframe width=100% height=400px')`
+[](version/nice_theme.html ":include :type=code html")
 
 ## watchlist
 
@@ -100,3 +99,5 @@
     - [preview](https://markrun.github.io/markrun/)
 
       我也想实现这样的效果
+
+  - [phaser 效果](https://phaser.io/examples/v3/view/actions/grid-align)
