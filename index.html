@@ -9,31 +9,30 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     />
+    <!-- docsify-themeable -->
     <link
       rel="stylesheet"
-      href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+      media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"
     />
-    <!-- latex -->
     <link
       rel="stylesheet"
-      href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"
+      media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"
     />
-    <!-- dark mode -->
+    <!-- End -->
+    <!-- begin for docsify katex -->
     <link
       rel="stylesheet"
-      href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css"
-      title="docsify-darklight-theme"
-      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css"
     />
-    <!-- mind map -->
-    <!-- markmap is based on d3 -->
-    <script src="//unpkg.com/d3@3/d3.min.js"></script>
-    <script src="//unpkg.com/markmap@latest/lib/d3-flextree.js"></script>
-    <script src="//unpkg.com/markmap@latest/lib/view.mindmap.js"></script>
-    <link
-      rel="stylesheet"
-      href="//unpkg.com/markmap@latest/style/view.mindmap.css"
-    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js"
+    ></script>
+    <!-- the version of marked must between 2.1.0 and 4(not included) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@3"></script>
+    <!-- End -->
     <!-- slidebar collapse -->
     <link
       rel="stylesheet"
@@ -45,6 +44,15 @@
       href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css"
     />
     <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <!-- End -->
+    <style type="text/css">
+      iframe {
+        display: block;
+        border: none;
+        height: 75vh;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
@@ -55,23 +63,19 @@
       window.$docsify = {
         name: "abstract container", // 目录的标题
         repo: "https://github.com/dzylikecode/dzylikecode.github.io", // 右上角的挂件
+        loadNavbar: true,
         loadSidebar: true,
-        subMaxLevel: 3, // 子目录最大层级
-        auto2top: true, // 自动跳转至顶部
-        notFoundPage: true, // 404页面
-        coverpage: true, // 显示封面
-        mindmap: {
-          markmap: {
-            preset: "colorful", // or default
-            linkShape: "diagonal", // or bracket
-          },
+        alias: {
+          "/.*/_navbar.md": "/_navbar.md",
         },
+        subMaxLevel: 3, // 子目录最大层级, 有助于显示 markdown 的层级
+        auto2top: true, // 自动跳转至顶部
         markdown: {
           renderer: {
             code: function (code, lang) {
               if (lang === "mermaid") {
                 return (
-                  '<div class="mermaid">' +
+                  '<div class="mermaid" style="background:#E1EFD9" >' +
                   mermaid.render("mermaid-svg-" + num++, code) +
                   "</div>"
                 );
@@ -80,19 +84,130 @@
             },
           },
         },
+        plugins: [
+          function (hook, vm) {
+            hook.beforeEach(function (html) {
+              return html.replace(
+                /<a\s+(?:[^>]*?\s+)?href\s*=\s*(["'])#(.*?)\1.*?>/g,
+                (m, g1, g2) => m.replace(g2, vm.route.path + "#" + g2)
+              );
+            });
+          },
+        ],
       };
+    </script>
+    <!-- docsify-katex for latex -->
+    <script>
+      // import katex from "katex";
+      // import marked from "marked";
+      (function () {
+        let oldMarkdown = window.$docsify.markdown;
+        let newMarked = marked; // version above 2.1.0
+        function newMarkdown(originMarked, originRenderer) {
+          // in docsify.js: `window.marked = marked;`
+          // this will overwrite the marked
+          // here `let newMarked = marked;` will not right
+          function isFn(obj) {
+            return typeof obj === "function";
+          }
+          const mathExtension = {
+            name: "math",
+            level: "inline",
+            start(src) {
+              let index = src.match(/\$/)?.index;
+              return index;
+            },
+            tokenizer(src, tokens) {
+              const blockRule = /^\$\$((\\.|[^\$\\])+)\$\$/;
+              const inlineRule = /^\$((\\.|[^\$\\])+)\$/;
+              let match;
+              if ((match = blockRule.exec(src))) {
+                return {
+                  type: "math",
+                  raw: match[0],
+                  text: match[1].trim(),
+                  mathLevel: "block",
+                };
+              } else if ((match = inlineRule.exec(src))) {
+                return {
+                  type: "math",
+                  raw: match[0],
+                  text: match[1].trim(),
+                  mathLevel: "inline",
+                };
+              }
+            },
+            renderer(token) {
+              if (token.mathLevel === "block") {
+                return katex.renderToString(token.text, {
+                  throwOnError: false,
+                  displayMode: true,
+                });
+              } else if (token.mathLevel === "inline") {
+                return katex.renderToString(token.text, {
+                  throwOnError: false,
+                  displayMode: false,
+                });
+              }
+            },
+          };
+          const merge =
+            Object.assign ||
+            function (to) {
+              for (let i = 1; i < arguments.length; i++) {
+                const from = Object(arguments[i]);
+                for (const key in from) {
+                  if (hasOwn.call(from, key)) {
+                    to[key] = from[key];
+                  }
+                }
+              }
+              return to;
+            };
+
+          let opts = oldMarkdown || {};
+
+          if (isFn(oldMarkdown)) {
+            opts = originMarkdonw.apply(
+              this, // make it right: return this.origin.code(src);
+              originMarked,
+              originRenderer
+            ).defaults;
+          } else {
+            opts = merge(oldMarkdown, {
+              renderer: merge(originRenderer, oldMarkdown.renderer),
+            });
+          }
+          newMarked.setOptions(opts);
+          newMarked.use({ extensions: [mathExtension] });
+
+          return newMarked;
+        }
+        window.$docsify.markdown = newMarkdown;
+      })();
     </script>
     <!-- Docsify v4 -->
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-    <!-- docsify-katex for latex -->
-    <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
-    <!-- dark mode -->
-    <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
     <!-- copy to clipboard -->
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-    <!-- markmap for mind map -->
-    <script src="//unpkg.com/docsify-mindmap/dist/docsify-mindmap.min.js"></script>
     <!-- slidebar collapse -->
     <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+    <!-- docsify-themeable -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+    <!-- search -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+    <!-- zoom image -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+    <!-- docsify-themeable -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+    <!-- End -->
+    <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+    <script>
+      addBackToTop({
+        diameter: 56,
+        backgroundColor: "rgb(255, 82, 82)",
+        textColor: "#fff",
+      });
+    </script>
   </body>
 </html>

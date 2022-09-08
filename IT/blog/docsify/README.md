@@ -48,31 +48,9 @@
 
   - copy below to `index.html`
 
-[](version/simple.html ":include :type=code html")
-
-### nice-theme
-
-- change
-
-  - 修改
-
-    - 主题
-    - mermaid 支持连接,latex
-
-  - 添加
-
-    - 搜索
-    - 放大图片
-
-[](version/nice_theme.html ":include :type=code html")
+[](template.html ":include :type=code html")
 
 ## watchlist
-
-- Language highlighting
-
-  - [Language highlighting](https://github.com/docsifyjs/docsify/blob/develop/docs/language-highlight.md)
-
-  not work
 
 - virtualize markdown as mind map
 

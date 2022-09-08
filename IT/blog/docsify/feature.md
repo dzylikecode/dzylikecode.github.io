@@ -569,8 +569,8 @@
       function (hook, vm) {
         hook.beforeEach(function (html) {
           return html.replace(
-            /<a\s+href\s*=\s*['|"]#(.*?)['|"].*?>/gi,
-            (m, g1) => m.replace(g1, vm.route.path + "#" + g1)
+            /<a\s+(?:[^>]*?\s+)?href\s*=\s*(["'])#(.*?)\1.*?>/g,
+            (m, g1, g2) => m.replace(g2, vm.route.path + "#" + g2)
           );
         });
       },
@@ -623,4 +623,70 @@
   ```html
   <!-- docsify-plugin-runkit -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-runkit@1"></script>
+  ```
+
+## docsify-tabs
+
+- [docs](https://jhildenbiddle.github.io/docsify-tabs/#/)
+
+- [repo](https://github.com/jhildenbiddle/docsify-tabs)
+
+- head
+
+  configuration: default
+
+  ```js
+  window.$docsify = {
+    // ...
+    tabs: {
+      persist: true, // default
+      sync: true, // default
+      theme: "classic", // default
+      tabComments: true, // default
+      tabHeadings: true, // default
+    },
+  };
+  ```
+
+- body
+
+  ```html
+  <!-- docsify-tabs (latest v1.x.x) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  ```
+
+## highlighting
+
+- [Language highlighting](https://github.com/docsifyjs/docsify/blob/develop/docs/language-highlight.md)
+
+## iframe style
+
+- head
+
+  ```html
+  <style type="text/css">
+    iframe {
+      display: block;
+      border: none;
+      height: 75vh;
+      width: 100%;
+    }
+  </style>
+  ```
+
+## go back to top
+
+- [repo](https://github.com/vfeskov/vanilla-back-to-top)
+
+- head
+
+  ```html
+  <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+  <script>
+    addBackToTop({
+      diameter: 56,
+      backgroundColor: "rgb(255, 82, 82)",
+      textColor: "#fff",
+    });
+  </script>
   ```

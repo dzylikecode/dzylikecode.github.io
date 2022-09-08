@@ -1,0 +1,3 @@
+- IT
+  - [blog](/IT/blog/)
+  - [software](/IT/software/)
