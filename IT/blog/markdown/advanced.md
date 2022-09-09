@@ -26,6 +26,10 @@
 
 ## mermaid
 
+- [mermaid](https://github.com/mermaid-js/mermaid)
+
+  - [tutorial](https://mermaid-js.github.io/mermaid/#/)
+
 - 流程图
 
   - [规范](https://blog.csdn.net/Z1998hx0919/article/details/112540117)
@@ -70,6 +74,10 @@
         `id1[\This is the text in the box\]`
 
         `id1[/This is the text in the box/]`
+
+## emoji
+
+- github markdown:[Emoji](https://gist.github.com/rxaviers/7360908)
 
 ## latex
 

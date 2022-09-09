@@ -63,10 +63,10 @@
       window.$docsify = {
         name: "abstract container", // 目录的标题
         repo: "https://github.com/dzylikecode/dzylikecode.github.io", // 右上角的挂件
-        loadNavbar: true,
-        loadSidebar: true,
+        loadNavbar: "nav.md",
+        loadSidebar: "summary.md",
         alias: {
-          "/.*/_navbar.md": "/_navbar.md",
+          "/.*/nav.md": "/nav.md",
         },
         subMaxLevel: 3, // 子目录最大层级, 有助于显示 markdown 的层级
         auto2top: true, // 自动跳转至顶部
@@ -209,5 +209,10 @@
         textColor: "#fff",
       });
     </script>
+    <!-- highlight -->
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-git.min.js"></script>
+    <!-- End -->
   </body>
 </html>

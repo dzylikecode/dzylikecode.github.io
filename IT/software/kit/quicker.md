@@ -1,6 +1,10 @@
 # quicker
 
+工具箱
+
 ## 快捷键
+
+给动作添加快捷键
 
 - ctrl + shift + x: 截图 OCR
 - ctrl + shift + q: 切换 quicker 运行状态

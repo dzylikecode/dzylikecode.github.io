@@ -1,8 +1,6 @@
 # Margin Note
 
-- 初衷
-
-  应该注重的是**知识的关系**, 而不是**知识的记录**
+应该注重的是**知识的关系**, 而不是**知识的记录**
 
 ## 倾向
 
@@ -43,8 +41,6 @@
   软件
 
   可以直接写入 MarginNote, 最后一起导出
-
-- [others](/notebook/pattern/assets/tool.md)
 
 ### export markdown
 

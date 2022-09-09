@@ -7,3 +7,9 @@
 
   - [基础语法](/IT/blog/markdown/basic.md)
   - [增强语法](/IT/blog/markdown/advanced.md)
+
+- 笔记
+
+  - [笔记](/IT/blog/notebook/README.md)
+  - [MarginNote](/IT/blog/notebook/marginnote.md)
+  - [metion](/IT/blog/notebook/metion.md)
