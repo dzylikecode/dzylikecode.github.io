@@ -6,13 +6,7 @@
 
   - [VSCode](/IT/software/code/vscode.md)
 
-  - git
-
-    - [原理](/IT/software/code/git/principle.md)
-    - [配置](/IT/software/code/git/config.md)
-    - [仓库](/IT/software/code/git/repository.md)
-    - [分支](/IT/software/code/git/branch.md)
-    - [标签](/IT/software/code/git/tag.md)
+  - [git](/IT/software/code/git/git.md)
 
   - [GitHub](/IT/software/code/GitHub/GitHub.md)
 
@@ -23,8 +17,12 @@
 
 - OS
 
-  - [Windows](/IT/software/OS/windows.md)
+  - [Windows](/IT/software/OS/Windows.md)
+  - [WSL](/IT/software/OS/WSL.md)
+  - [WSA](/IT/software/OS/WSA.md)
+  - [ipad](/IT/software/OS/ipad.md)
 
 - 代理
 
   - [frp](/IT/software/proxy/frp.md)
+  - [ssh](/IT/software/proxy/ssh/ssh.md)

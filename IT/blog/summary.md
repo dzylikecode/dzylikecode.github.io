@@ -11,5 +11,5 @@
 - 笔记
 
   - [笔记](/IT/blog/notebook/README.md)
-  - [MarginNote](/IT/blog/notebook/marginnote.md)
-  - [metion](/IT/blog/notebook/metion.md)
+  - [MarginNote](/IT/blog/notebook/MarginNote.md)
+  - [metion](/IT/blog/notebook/Metion.md)
