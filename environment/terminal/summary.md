@@ -1,0 +1,2 @@
+- [intro](environment/terminal/README.md)
+- [windows terminal](environment/terminal/WindowsTerminal.md)

@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Dz's blog</title>
+    <title>Document</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="description" content="record growth of Dz" />
-    <meta name="keywords" content="Dz, blog, 博客" />
+    <meta name="description" content="Python Tutorial" />
+    <meta name="keywords" content="Python, python" />
     <meta name="author" content="Dz" />
     <meta
       name="viewport"
@@ -32,8 +32,8 @@
       defer
       src="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.js"
     ></script>
-    <!-- the version of marked must between 2.1.0 and 4(not included) -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@3"></script>
+    <!-- the version of marked must between 2.1.0 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@4"></script>
     <!-- End -->
     <!-- slidebar collapse -->
     <link
@@ -63,8 +63,8 @@
       mermaid.initialize({ startOnLoad: false });
 
       window.$docsify = {
-        name: "abstract container", // 目录的标题
-        repo: "https://github.com/dzylikecode/dzylikecode.github.io", // 右上角的挂件
+        name: "Tree", // 目录的标题
+        repo: "", // 右上角的挂件
         loadNavbar: "navigation.md",
         loadSidebar: "summary.md",
         alias: {
@@ -89,9 +89,7 @@
         plugins: [
           function (hook, vm) {
             hook.beforeEach(function (html) {
-              let url =
-                "https://github.com/dzylikecode/dzylikecode.github.io/blob/master/" +
-                vm.route.file;
+              let url = "" + vm.route.file;
               let editHtml = "[:memo: EDIT DOCUMENT](" + url + ")\n";
               return (
                 editHtml +
@@ -207,20 +205,5 @@
     <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
     <!-- docsify-themeable -->
     <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
-    <!-- End -->
-    <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-    <script>
-      addBackToTop({
-        diameter: 56,
-        backgroundColor: "rgb(255, 82, 82)",
-        textColor: "#fff",
-      });
-    </script>
-    <!-- highlight -->
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-git.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ignore.min.js"></script>
-    <!-- End -->
   </body>
 </html>
