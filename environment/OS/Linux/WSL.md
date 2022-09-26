@@ -1,66 +1,100 @@
 # WSL
 
-## reference
+- w11 环境
 
-- [WSL2 中使用 VcXsrv 实现 xfce4 图形界面+声音传输](https://zhuanlan.zhihu.com/p/150555651)
+- wsl 帮助
 
-## prepare
+  ```bash
+  wsl --help
+  ```
 
-### some good terminals
+- 查看当前安装信息
 
-- [windows terminal github](https://github.com/microsoft/terminal)
-
-- [tabby github](https://github.com/Eugeny/tabby)
-
-### windows configuration
-
-- search `Windows 子系统 安装`
-  > 以下参考:
-  >
-  > - [Windows 子系统 安装](https://zhuanlan.zhihu.com/p/62658094)
-  >   > 目的是打开`开发者模式`
+  ```bash
+  wsl -l -v
+  ```
 
 ## install
 
-- wsl
+- 默认暗转 Ubuntu
 
-  > 管理员模式打开`powershell`
-  >
-  > - 参考命令:[WSL 的基本命令](https://docs.microsoft.com/zh-cn/windows/wsl/basic-commands#set-wsl-version-to-1-or-2)
-  >   > 建议安装`wsl2`, 即运行`wsl --set-default-version`
-  >   >
-  >   > 如果已安装`wsl1`,则可以通过`wsl --set-version Ubuntu 2`来升级
+  ```bash
+  wsl --install
+  ```
 
-- install
+- 指定 distribution
 
-  `wsl --install -d Ubuntu`
+  ```bash
+  wsl --install -d Ubuntu
+  ```
 
-- 推荐安装过程: [Windows10/11 D 盘 安装 WSL2](https://zhuanlan.zhihu.com/p/509079404)
+!> 需要管理员权限, 推荐安装 WSL2, 而不是 WSL1
 
-- 设置默认用户
-
-  ubuntu config --default-user root
-
-## 重装
-
-- [Win10 系统中怎么重置 Linux 子系统?Linux 子系统重置方法](https://m.html.cn/system/windows/112633544749400.html)
-  > - 可以先尝试如下方法
-  >   > `wsl.exe --unregister Ubuntu`
-  >   > 然后点击开始菜单里面 Ubuntu 的图标, 会重新安装
-
-## 迁移到 D 盘
-
-- [Windows 开启 linux 子系统并迁移到非系统盘](https://zhuanlan.zhihu.com/p/339908228)
-  > - 工具:[LxRunOffline](https://github.com/DDoSolitary/LxRunOffline/releases)
-  >   通过 powershell 打开到当前目录
+## uninstall
 
 ```bash
-.\LxRunOffline.exe list   #查看可用的子系统
-.\LxRunOffline.exe move -n Ubuntu -d D:\WSL #将Ubuntu放在D盘的WSL文件夹下(-n指定迁移的系统，-d指定迁移路径)
-.\LxRunOffline.exe get-dir #查询系统目录
+wsl --unregister Ubuntu
 ```
 
+## migrate
+
+迁移到 D 盘
+
+### method-1
+
+1. 备份信息
+
+   ```bash
+   wsl --export Ubuntu <path/to/save>
+   ```
+
+2. 注销
+
+   ```bash
+   wsl --unregister Ubuntu
+   ```
+
+3. 根据备份重装
+
+   ```bash
+   wsl --import Ubuntu <path/to/install> <path/to/sav>
+   ```
+
+4. 设置默认用户
+
+   导入后, 默认用户是 root, 需要重新设置默认用户
+
+   ```bash
+    ubuntu config --default-user <username>
+   ```
+
+### method-2
+
+- [Windows 开启 linux 子系统并迁移到非系统盘](https://zhuanlan.zhihu.com/p/339908228)
+
+  - 工具:[LxRunOffline](https://github.com/DDoSolitary/LxRunOffline/releases)
+
+    通过 powershell 打开到当前目录
+
+  ```bash
+  ./LxRunOffline.exe list   #查看可用的子系统
+  ./LxRunOffline.exe move -n Ubuntu -d D:/WSL #将Ubuntu放在D盘的WSL文件夹下(-n指定迁移的系统，-d指定迁移路径)
+  ./LxRunOffline.exe get-dir #查询系统目录
+  ```
+
+!> 不推荐, 仅仅是在`wsl`没有 export/import 功能的替代
+
 ## graphic
+
+### WSLg
+
+将 WSL2 升级为 WSLg 即可
+
+```bash
+wsl --update
+```
+
+### wsl
 
 - [Win10 的 Linux 子系统也能运行图形程序，附详细教程](https://zhuanlan.zhihu.com/p/33312052)
 - 软件:[xming](https://sourceforge.net/projects/xming/)
@@ -240,3 +274,7 @@ alias ccat='pygmentize -f terminal256 -O style=native -g'
 alias bdnetdisk='/opt/baidunetdisk/baidunetdisk'
 export cpp_link='/home/minus/git_workspace/linux-helper/package/command/README.md'
 ```
+
+## reference
+
+- [WSL2 中使用 VcXsrv 实现 xfce4 图形界面+声音传输](https://zhuanlan.zhihu.com/p/150555651)

@@ -661,6 +661,8 @@
 
 - 官网列表: [Supported languages](https://prismjs.com/#supported-languages)
 
+  搜索列表: [托管网站](https://cdn.jsdelivr.net/npm/prismjs@1/components/)
+
   - 结构
 
     `C++ - cpp`

@@ -1,7 +1,7 @@
-# root
+# blog
+
+- online docs: https://dzylikecode.github.io/#/
 
 - 初衷
 
-  - 其他笔记的根部
-
-- 在线预览:https://dzylikecode.github.io/#/
+  - 其他笔记的起源地

@@ -40,18 +40,6 @@
 
   > `i` 进入插入模式, `Esc` 退出插入模式
 
-## 手册
-
-- whatis `command`
-
-  查看手册的 section
-
-- man `<command>`
-
-  进入手册, 输入`h`可以查看文档的命令
-
-  `man [num] <command>`: 查看命令的第 `num` 的 section
-
 ## 文本命令
 
 - less
@@ -61,24 +49,6 @@
   `j`: 向下移动
 
   `k`: 向上移动
-
-## bash
-
-> `man -K /etc/profile`
-
-- 执行过程
-
-  执行参数扩展 => 执行程序
-
-  - 执行参数扩展
-
-    `*`: 通用符
-
-    `{}`:
-
-- `.profile`
-- `.bashrc`
-- `.bash_history`
 
 ## 文件处理
 
@@ -95,37 +65,6 @@
 - mv
 - rm
 - touch
-
-## bash 变量
-
-- env
-
-  类似于 c++的 protect, 子进程会继承
-
-- set
-
-  类似于私有变量
-
-> environment variable have UPPER CASE and local variable have lower case names
-
-- 变量生效的时间
-
-  [Why can't I specify an environment variable and echo it in the same command line?](https://stackoverflow.com/questions/10938483/why-cant-i-specify-an-environment-variable-and-echo-it-in-the-same-command-line)
-
-  ```bash
-  SOMEVAR=BBB echo zzz $SOMEVAR zzz
-  # zzz AAA zzz
-  echo $SOMEVAR
-  # BBB
-  ```
-
-  可以看到同一行执行的时候, `SOMEVAR=BBB`没有生效, 而是在执行完之后生效
-
-  - 解决方法
-
-    ```bash
-    SOMEVAR=BBB sh -c 'echo zzz $SOMEVAR zzz'
-    ```
 
 ## 语言设置
 
@@ -155,6 +94,157 @@
 
 ## 重定向
 
+重定向针对的是 command, command 有三个流: 标准输入, 标准输出, 标准错误, 分别用文件标识符 0, 1, 2 表示
+
+- `<`: 文件替换标准输入
+
+  `command < stdin` -> `command < file`
+
+- `>`: 文件替换标准输出, 覆盖形式
+
+  `command > stdout` -> `command > file`
+
+  > equals to `command 1> file`
+
+  如果需要重定向`标准错误输出`
+
+  `command 2> file`
+
+- `>>`: 文件替换标准输出, 追加形式
+
+- example-1
+
+  ```bash
+  wc -l < .bash_history
+  ```
+
+  替换为键盘输入
+
+  ```bash
+  wc -l < /dev/tty
+  ```
+
+- example-2
+
+  ```bash
+  firefox > /dev/null 2>&1
+  ```
+
+  > 重定向是对 command 的修饰, `> /dev/null 2>&1` 修饰了`firefox`
+
+  表明:
+
+  1. `> /dev/null`
+
+     标准输出重定向到`/dev/null`
+
+  2. `2>&1`
+
+     标准错误输出重定向到标准输出
+
+     相当于标准错误输出重定向到`/dev/null`
+
+     > `&` 表明`1`是文件标识符, 而不是文件名
+
+  `CTRL + D` 会产生结尾符`EOF`
+
+- reference
+
+  - manual
+
+    ```bash
+    man bash
+    # 在man页面输入
+    & redirection # 跳转
+    ```
+
+## pipe
+
+- `|`: 将前一个命令的输出作为后一个命令的输入
+
+  > `obj1 | obj2` equals `obj1 > temp_files && obj2 < temp_files`
+
+- [What is the difference between "Redirection" and "Pipe"?](https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe)
+
+## 多任务处理
+
+- execute command in background
+
+  ```bash
+  command &
+  ```
+
+  !> 此时`command`的标准输出和标准错误输出还是会输出到终端
+
+  - 忽略输出
+
+    ```bash
+    command > /dev/null 2>&1 &
+    ```
+
+- To **pause** and send a task to the background
+
+  `ctrl+z`
+
+  > `ctrl+z` stops the process and returns you to the current shell.
+
+- to reactivate the task
+
+  ```bash
+  fg %num
+  ```
+
+- to run task in background
+
+  bg
+
+  ```bash
+  bg %num
+  ```
+
+  > 可以使得 suspend 的任务在后台运行
+
+- to see a list of tasks
+
+  ```bash
+  jobs
+  # equls
+  jobs -l
+  ```
+
+  > 会显示任务的编号和状态(suspend or running)
+
+  - 查看文档的方法
+
+    ```bash
+    man bash
+    # 然后输入
+    & jobs
+    ```
+
+- to kill task in background
+
+  ```bash
+  kill %num
+  ```
+
+  or use fg command
+
+  ```bash
+  fg %num
+  # then press ctrl + c
+  ```
+
+> 以上都是绑定着当前的终端
+
+- 与终端分离
+
+  ```bash
+  disown %num
+  ```
+
+  > 无法用 jobs 查看, 参考 [Linux: View and kill disowned process](https://superuser.com/questions/1196406/linux-view-and-kill-disowned-process)
+
 ## software
 
 - 卸载
@@ -183,7 +273,7 @@
 
 - `Type`
 
-  很多种 (最常见的是 - 为文件, d 为文件夹, 其他的还有 l, n ... 这种东西, 真正自己遇到了, 网上再搜就好, 一次性说太多记不住的).
+  很多种 (最常见的是 - 为文件, d 为文件夹, 其他的还有 l, n ...).
 
 - `User`
 
@@ -220,3 +310,12 @@ chmod [who][how] [file]
 - file
 
   施加操作的文件, 可以为多个
+
+## reference
+
+- [Bash Reference Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html)
+- [What is /dev/null 2>&1?](https://stackoverflow.com/questions/10508843/what-is-dev-null-21#:~:text=command%20%3E%3E%20%2Fdev%2Fnull%202%3E%261,-After%20command%3A%20command&text=1%20is%20standard%20output%20and,to%20a%20file%20named%201%20.)
+- [What does " 2>&1 " mean?](https://stackoverflow.com/questions/818255/what-does-21-mean)
+- [Input Output Redirection in Linux/Unix Examples](https://www.guru99.com/linux-redirection.html)
+- [How to Run Linux Commands in Background](https://linuxize.com/post/how-to-run-linux-commands-in-background/)
+- [Linux: View and kill disowned process](https://superuser.com/questions/1196406/linux-view-and-kill-disowned-process)

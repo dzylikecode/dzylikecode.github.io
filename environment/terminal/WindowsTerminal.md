@@ -1,5 +1,7 @@
 # windows Terminal
 
+- [windows terminal github](https://github.com/microsoft/terminal)
+
 ## 快捷键
 
 - `win + ~`
@@ -11,6 +13,10 @@
 - `alt + shift + =`
 
   拆分新窗口
+
+- `alt + leftArrow`
+
+  焦点移动到左边窗口
 
 - `ctrl + shift + w`
 
