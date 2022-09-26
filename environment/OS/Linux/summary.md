@@ -2,3 +2,4 @@
 - [WSL](environment/OS/Linux/WSL.md)
 - [文档](environment/OS/Linux/doc.md)
 - [文本操作](environment/OS/Linux/text.md)
+- [包](environment/OS/Linux/pkg.md)

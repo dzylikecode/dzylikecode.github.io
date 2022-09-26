@@ -1,9 +1,5 @@
 # Linux
 
-## task
-
-- [ ] 阅读: [笨办法学 Linux 中文版](https://dunwu.github.io/linux-tutorial/)
-
 ## reference
 
 - [笨办法学 Linux 中文版](https://wizardforcel.gitbooks.io/llthw/content/)

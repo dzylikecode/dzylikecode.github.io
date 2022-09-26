@@ -245,28 +245,6 @@
 
   > 无法用 jobs 查看, 参考 [Linux: View and kill disowned process](https://superuser.com/questions/1196406/linux-view-and-kill-disowned-process)
 
-## software
-
-- 卸载
-
-  ```bash
-  sudo apt-get remove <package>
-  ```
-
-- 完全卸载
-
-  包括个人数据
-
-  ```bash
-  sudo apt-get purge <package>
-  ```
-
-- 删除依赖
-
-  ```bash
-  sudo apt-get autoremove
-  ```
-
 ## 权限
 
 ![](assets/2022-09-17-23-59-59.png)
