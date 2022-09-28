@@ -18,17 +18,19 @@
   - 系统管理命令(通常仅适用于 root 用户)
   - 内核例程`[非标准]`
 
-  查看手册的 section
+查看手册的 section
 
-  ```bash
-  whatis <command>
-  ```
+```bash
+whatis <command>
+```
 
-  - man `<command>`
+- man `<command>`
 
-    进入手册, 输入`h`可以查看文档的命令
+  进入手册, 输入`h`可以查看文档的命令
 
-    `man [num] <command>`: 查看命令的第 `num` 的 section
+  `man [num] <command>`: 查看命令的第 `num` 的 section
+
+  输入`\`然后可以输入关键字, `n`可以下一个关键字(通过查阅 help 文档可以得知)
 
 - section
 

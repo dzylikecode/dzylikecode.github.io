@@ -3,3 +3,8 @@
 - [文档](environment/OS/Linux/doc.md)
 - [文本操作](environment/OS/Linux/text.md)
 - [包](environment/OS/Linux/pkg.md)
+- [系统](environment/OS/Linux/system.md)
+- [文件](environment/OS/Linux/file/file.md)
+- [进程](environment/OS/Linux/process.md)
+- [日志](environment/OS/Linux/log.md)
+- [文件系统](environment/OS/Linux/file-system.md)
