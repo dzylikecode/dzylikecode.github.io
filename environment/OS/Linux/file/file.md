@@ -10,6 +10,16 @@ man hier
 
 ## 权限
 
+- 查看文件状态
+
+  ```bash
+  ls -l <filename>
+  ```
+
+  ```bash
+  stat <filename>
+  ```
+
 ![](assets/2022-09-17-23-59-59.png)
 
 - `Type`
@@ -27,6 +37,30 @@ man hier
 - `Others`
 
   除了 User 和 Group 以外人的权限.
+
+| 权限 | 符号  | 二进制 | 八进制 |           描述           |
+| :--: | :---: | :----: | :----: | :----------------------: |
+|  读  | `r--` |  100   |   4    |      读取文件的能力      |
+|  写  | `-w-` |  010   |   2    |      写入文件的能力      |
+| 执行 | `--x` |  001   |   1    | 将文件作为程序执行的能力 |
+
+- 根据当前 umask 来设置文件的权限
+
+  |      状态      | 八进制 |     符号      |
+  | :------------: | :----: | :-----------: |
+  |     umask      |  022   | `--- -w- -w-` |
+  |     新文件     |        |               |
+  |  初始文件权限  |  666   | `rw- rw- rw-` |
+  | 产生的文件权限 |  644   | `rw- r-- r--` |
+  |     新目录     |        |               |
+  |  初始目录权限  |  777   | `rwx rwx rwx` |
+  | 产生的目录权限 |  655   | `rwx r-x r-x` |
+
+  $$ Permission = 777(666) - umask $$
+
+  文件夹默认没有`execute`权限.
+
+> When a new file is created on a Unix-like system, its permissions are determined from the umask of the process that created it.
 
 ### 修改权限
 
@@ -51,3 +85,15 @@ chmod [who][how] [file]
 - file
 
   施加操作的文件, 可以为多个
+
+- 查看命令
+
+  - umask
+  - chown
+  - chmod
+
+    setuid, setgid 和 sticky
+
+## reference
+
+- [What is Umask and How To Setup Default umask Under Linux?](https://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html#:~:text=A%20umask%20of%20022%20allows,users%20in%20the%20same%20group.)

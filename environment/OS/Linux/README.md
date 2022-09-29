@@ -2,7 +2,7 @@
 
 ## reference
 
-- [笨办法学 Linux 中文版](https://wizardforcel.gitbooks.io/llthw/content/)\
+- [笨办法学 Linux 中文版](https://wizardforcel.gitbooks.io/llthw/content/)
 
   - repo: [llthw-zh](https://github.com/apachecn/llthw-zh)
 
