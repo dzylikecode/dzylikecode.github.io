@@ -1,16 +1,1 @@
-- study
-  - [大学时光](/study/college.md)
-- IT
-  - blog
-    - docsify
-      - [搭建](IT/blog/docsify/README.md)
-      - [插件](IT/blog/docsify/feature.md)
-    - 笔记
-  - 软件
-    - [git](IT/software/git.md)
-    - [vscode](IT/software/vscode.md)
-    - [windows](IT/software/windows.md)
-- entertainment
-  - [music](entertainment/music.md)
-  - [video](entertainment/video/README.md)
-  - [game](entertainment/game/README.md)
+- [intro](README.md)
