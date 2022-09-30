@@ -11,5 +11,7 @@
   - [终端](environment/terminal/)
   - [工具箱](environment/kit/)
   - [Linux](environment/OS/Linux/)
+- CS
+  - [语言](CS/lang/)
 - education
   - [大学](education/university/)
