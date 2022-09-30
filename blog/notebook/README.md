@@ -79,6 +79,8 @@
 
   把任务写到里面, 而如果自己有疑惑, 则可以开一个 issue
 
+  有什么 idea 就立马创建一个 feature, 进行 pull request
+
 - 有感悟的时候再进一步重构
 
 - PPT, docx 等文档, 可以用 Google drive 进行共享, 完成后删除
