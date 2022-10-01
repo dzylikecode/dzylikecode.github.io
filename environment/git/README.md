@@ -760,6 +760,14 @@ gitGraph
 
 - `git remote rename <old_name> <new_name>`
 
+## prune
+
+当 GitHub 仓库分支删除后, 本地的远程仓库分支还是会保留
+
+- `git remote prune origin`
+
+  删除远程仓库中已经被删除的分支
+
 ## 手册
 
 ```bash
