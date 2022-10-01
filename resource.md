@@ -6,6 +6,10 @@
 - [Stack Exchange](http://stackexchange.com/)
 - [Quora](https://www.quora.com/)
 
+## book
+
+- [free-programming-books-zh_CN](https://github.com/justjavac/free-programming-books-zh_CN/)
+
 ## 表格
 
 - [表格生成器](https://yelog.org/tableGenerate/)
