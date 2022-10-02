@@ -13,7 +13,7 @@
   - [Linux](environment/OS/Linux/)
 - education
   - [大学](education/university/)
-- entertainment
+- :dancer:
   - [影视](entertainment/video/)
   - [音乐](entertainment/music/)
   - [游戏](entertainment/game/)
