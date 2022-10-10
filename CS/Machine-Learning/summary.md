@@ -1,0 +1,2 @@
+- [:boat:](/CS/Machine-Learning/README.md)
+- [a simple example online](https://dzylikecode.github.io/Inspire-Neural-network/#/)
