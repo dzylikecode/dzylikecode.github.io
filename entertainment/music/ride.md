@@ -1,3 +1,8 @@
+# ride
+
+Lana Del Rey
+
+```txt
 "I was in the winter of my life
 And the men that I met along the road were my only summer.
 At night, I fell asleep with visions of myself
@@ -79,7 +84,7 @@ I've got a war in my mind
 I just ride, I just ride
 I just ride, I just ride
 
-I'm tired of feeling like I'm `f*cking` crazy
+I'm tired of feeling like I'm f*cking crazy
 I'm tired of driving 'til I see stars in my eyes
 I look up to hear myself saying
 "Baby, too much I strive, I just ride"
@@ -111,3 +116,8 @@ Who are you?
 Are you in touch with all your darkest fantasies?
 Have you created a life for yourself where you're free to experience them?
 I have! I am fucking crazy, but I am free!"
+```
+
+## feel
+
+每每听到, 感觉自己像是在空寂的夏夜, roar in the road, 感到无比的孤独与无比的自由
