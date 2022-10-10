@@ -17,3 +17,4 @@
   - [影视](entertainment/video/)
   - [音乐](entertainment/music/)
   - [游戏](entertainment/game/)
+  - [朋友](entertainment/friends/)
