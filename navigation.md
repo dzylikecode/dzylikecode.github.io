@@ -1,9 +1,9 @@
-- [home](/)
-- blog
+- [:house:](/)
+- :notebook:
   - [docsify](blog/docsify/)
   - [markdown](blog/markdown/)
   - [笔记](blog/notebook/)
-- environment
+- :factory:
   - [浏览器](environment/browser/)
   - [编辑器](environment/editor/)
   - [Git](environment/git/)
@@ -11,10 +11,13 @@
   - [终端](environment/terminal/)
   - [工具箱](environment/kit/)
   - [Linux](environment/OS/Linux/)
-- education
+- :computer:
+  - [语言](CS/lang/)
+- :school:
   - [大学](education/university/)
 - :dancer:
   - [影视](entertainment/video/)
   - [音乐](entertainment/music/)
   - [游戏](entertainment/game/)
   - [朋友](entertainment/friends/)
+  - [语言](education/LCID/)
