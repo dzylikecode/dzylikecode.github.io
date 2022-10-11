@@ -21,3 +21,7 @@
 - The truth that you leave
 
 - welcome to New York
+
+- 狂おしいほど僕には美しい
+
+  感受到一种病态, 异乎寻常热爱的病态

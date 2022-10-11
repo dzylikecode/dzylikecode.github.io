@@ -16,3 +16,8 @@
 - :school:
   - [大学](education/university/)
   - [语言](education/LCID/)
+- :dancer:
+  - [影视](entertainment/video/)
+  - [音乐](entertainment/music/)
+  - [游戏](entertainment/game/)
+  - [朋友](entertainment/friends/)
