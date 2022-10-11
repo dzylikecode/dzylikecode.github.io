@@ -21,3 +21,4 @@
   - [音乐](entertainment/music/)
   - [游戏](entertainment/game/)
   - [朋友](entertainment/friends/)
+  - [书籍](entertainment/book/)
