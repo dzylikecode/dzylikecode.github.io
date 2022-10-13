@@ -13,6 +13,7 @@
   - [Linux](environment/OS/Linux/)
 - :computer:
   - [语言](CS/lang/)
+  - [机器学习](CS/Machine-Learning/)
 - :school:
   - [大学](education/university/)
   - [语言](education/LCID/)
