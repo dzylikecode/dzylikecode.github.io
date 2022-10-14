@@ -23,3 +23,4 @@
   - [游戏](entertainment/game/)
   - [朋友](entertainment/friends/)
   - [书籍](entertainment/book/)
+- [:money_with_wings:](donation.md)
