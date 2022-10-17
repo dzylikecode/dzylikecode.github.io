@@ -1,6 +1,7 @@
 # hollowness
 
-美波 (Minami) - ホロネス (Hollowness)
+- alias: ホロネス (Hollowness)
+- author: 美波 (Minami)
 
 ## lyrics
 

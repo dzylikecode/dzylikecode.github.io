@@ -1,6 +1,6 @@
 # ride
 
-Lana Del Rey
+- author: Lana Del Rey
 
 ## lyrics
 
