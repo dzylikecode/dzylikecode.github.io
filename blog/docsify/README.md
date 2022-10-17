@@ -1,54 +1,25 @@
-# docsify
+# Docsify
 
 - repository: https://github.com/docsifyjs/docsify
 - tutorial: https://docsify.js.org/#/quickstart
 
-  - [docsify-js-tutorial](https://github.com/MichaelCurrin/docsify-js-tutorial)
+  - [Docsify-js-tutorial](https://github.com/MichaelCurrin/docsify-js-tutorial)
 
 ## template
 
-### simple
-
-- configuration
-
-  - `.gitignore`
-
-    ```gitignore
-    # metion
-    .configs/
-    .Archive/
-    .markeditor/
-    .metion/
-    .markdown/
-    .sync/
-    .idea/
-    .DS_STORE
-    Thumbs.db*
-    /.posts_info.json
-    /posts_info.json
-    /.git_settings.json
-    /git_settings.json
-    /.ios_file_manager_status*.json
-    /.farbox_token.*
-    /.farbox_auto_sync.*
-    /__wechat.json
-    /*.sqlite3
-    .db/
-    # vs code
-    .vscode/
-    ```
-
-- step
-
-  - execute command
-
-    ```bash
-    docsify init ./docs
-    ```
-
-  - copy below to `index.html`
-
 [](template.html ":include :type=code html")
+
+1. create a repo in the GitHub UI with the template
+
+2. 完成 README 的 TODO
+
+## VSCode extension
+
+- [Docsify Preview](https://dzylikecode.github.io/VSCodeExt-docsify-Preview/#/)
+
+  repo: https://github.com/dzylikecode/VSCodeExt-docsify-Preview
+
+  market: https://marketplace.visualstudio.com/items?itemName=dzylikecode.docsify-preview
 
 ## watchlist
 
