@@ -2,6 +2,8 @@
 
 美波 (Minami) - ホロネス (Hollowness)
 
+## lyrics
+
 ```txt
 君は言う「もう楽になれるよ」と
 今思えば　それが甘い罠に

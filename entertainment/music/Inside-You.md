@@ -2,6 +2,8 @@
 
 milet
 
+## lyrics
+
 ```txt
 Where are you going? まだ明けない夜は 愛想を尽かして
 期待はもうしない あなたはもういない
