@@ -1,6 +1,6 @@
-# windows Terminal
+# Windows Terminal
 
-- [windows terminal github](https://github.com/microsoft/terminal)
+- [windows terminal GitHub](https://github.com/microsoft/terminal)
 
 ## 快捷键
 

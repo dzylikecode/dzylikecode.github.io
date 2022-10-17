@@ -4,40 +4,6 @@
 
 美国丽人
 
-- zsh
-
-文章给出索引, 紧接着是简单的内容概括
-
-- [使用 zsh + oh-my-zsh + ConEmu 为 Linux 设置 Windows 子系统](https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/)
-
-  - install
-
-    `sudo apt-get install zsh`
-
-  - install oh-my-zsh
-
-    `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-
-  - install font
-
-    `git clone https://github.com/powerline/fonts.git`
-
-- [Mac 终端 zsh 安装插件时遇到的问题 source:1: no such file or directory: zsh-autosuggestions.zsh^M 解决办法](https://blog.csdn.net/lilyssh/article/details/118210229)
-
-- [oh my zsh 插件安装详细教程及常用插件](https://segmentfault.com/a/1190000039860436)
-
-  - 安装地址
-
-    `cd ~/.oh-my-zsh/custom/plugins`
-
-    使用 git 安装插件
-
-- [Mac 下 oh-my-zsh 的安装配置和卸载](https://blog.csdn.net/s18438610353/article/details/103461470)
-
-- [oh-my-zsh：让终端飞](https://zhuanlan.zhihu.com/p/62501175)
-
-- [WSL + oh my zsh 更好看的 shell](https://zhuanlan.zhihu.com/p/68336685)
-
 不要让游戏完全控制了自己的思考, 让游戏变为平常的一部分, 不要干扰自己的普通思考, 思考线性代数等等, 重点是高效
 
 开发就是那么简答和简洁, 不是搞什么高深莫测, 就是艰难的技术开发
