@@ -2,11 +2,13 @@
 
 - Scorn
 
-  恶心元素
+  恶心元素。恶心的同时其美术风格和世界观也是十分具有特色。
 
-- kingdom
+- kingdom  
+    探索、建设、防御
 
-- [GRIS](https://store.steampowered.com/app/683320/GRIS/)
+- [GRIS](https://store.steampowered.com/app/683320/GRIS/)  
+    出色的几何美学，恰到好处的解谜元素
 
 - [Life is Strange](https://store.steampowered.com/app/319630/Life_is_Strange__Episode_1/)   
     关于校园、友情、蝴蝶效应的故事
