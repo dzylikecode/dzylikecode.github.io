@@ -555,6 +555,16 @@ gitGraph
 
   实际当中,回退的时候,会看不到后续分支 `hash_id`,可以通过`git reflog`来查阅
 
+- `git reset --mixed`
+
+  提交错了分支可以使用这个, 然后切换分支即可
+
+- reference
+
+  - [Git Reset](https://www.atlassian.com/git/tutorials/undoing-changes/git-reset#:~:text=To%20review%2C%20git%20reset%20is,correspond%20to%20the%20three%20trees.)
+
+  - [Git Reset](https://www.gitkraken.com/learn/git/git-reset#:~:text=Git%20Reset%20Soft,-The%20first%20of&text=This%20option%20moves%20HEAD%20back,ready%20to%20be%20committed%20again.)
+
 ### rebase
 
 ```mermaid
