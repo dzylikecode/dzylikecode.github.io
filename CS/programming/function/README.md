@@ -10,6 +10,14 @@
 
 偏函数, 更为具体的应用场合
 
+既然都是图灵完备, 那么可以相互构建, 互相混用
+
+箭头函数表达的是关系
+
+傅里叶变换和矩阵变换
+
+> 和别人讨论, 讲解, 非常有意思, 能促进自己的热情
+
 ## reference
 
 - [函数编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
@@ -25,3 +33,17 @@ https://github.com/graninas/cpp_functional_programming
 https://www.toptal.com/javascript/functional-programming-javascript
 
 https://opensource.com/article/17/6/functional-javascript
+
+https://hackernoon.com/learn-functional-python-in-10-minutes-to-2d1651dece6f
+
+python functional programming: https://zhuanlan.zhihu.com/p/42621241
+
+https://www.zhihu.com/question/514083405
+
+https://www.zhihu.com/question/276076799
+
+https://www.zhihu.com/question/20943968
+
+https://www.zhihu.com/question/36782552
+
+https://www.zhihu.com/question/28292740
