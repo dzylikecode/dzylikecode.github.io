@@ -115,7 +115,50 @@
   - [Snap: Register code as an editor in Debian with update-alternatives](https://github.com/microsoft/vscode/issues/93046)
   - [Setting VS Code as the default text editor](https://code.visualstudio.com/docs/setup/linux#_setting-vs-code-as-the-default-text-editor)
 
+### 设置
+
+- user setting
+
+  全局设置范围
+
+- workspace settings
+
+  工作区范围, 会覆盖全局的设置
+
+- wsl setting
+
+  针对子系统
+
+有图形化设置和 json 设置, 右上角有形式相互转化的按钮
+
+json 设置时, 编号处会提示如何设置
+
+使用`ctrl+shift+P`打开命令面板, 输入`settings`可以快速打开设置
+
+- open User settings(UI)
+- open User settings(JSON)
+
+针对不同的语言设置
+
+- json
+
+  ```json
+  {
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  }
+  ```
+
+- UI
+
+  使用`@`, 例如`@lang:javascript`
+
 ### 快捷键
+
+- `ctrl+P`
+
+  文件跳转
 
 - `alt+shift`
 
