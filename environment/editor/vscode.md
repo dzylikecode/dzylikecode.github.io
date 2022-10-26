@@ -107,6 +107,14 @@
 
 - 设置为默认的编辑器
 
+  ```bash
+  sudo update-alternatives --set editor /path/to/vscode
+  ```
+
+  - [Getting the default text editor used in system](https://askubuntu.com/questions/615178/getting-the-default-text-editor-used-in-system)
+  - [Snap: Register code as an editor in Debian with update-alternatives](https://github.com/microsoft/vscode/issues/93046)
+  - [Setting VS Code as the default text editor](https://code.visualstudio.com/docs/setup/linux#_setting-vs-code-as-the-default-text-editor)
+
 ### 快捷键
 
 - `alt+shift`
