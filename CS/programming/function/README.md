@@ -156,6 +156,42 @@ The philosophy of functional programming postulates that side effects are a prim
 
   > 同样的输出, 必有同样的输入, 那么可以将计算过的结果缓存起来, 以便下次使用
 
+  Something to note is that you can transform some impure functions into pure ones by delaying evaluation:
+
+  ```js
+  const pureHttpCall = memoize((url, params) => () => $.getJSON(url, params));
+  ```
+
+  Our `memoize` function works just fine, though it doesn't cache the results of the http call, rather it caches the generated function.
+
+### Portable/Self-document
+
+Pure functions are completely self contained.
+
+we're forced to "inject" dependencies, or pass them in as arguments
+
+In a JavaScript setting, portability could mean serializing and sending functions over a socket. It could mean running all our app code in web workers.
+
+Contrary to "typical" methods and procedures in imperative programming rooted deep in their environment via state, dependencies, and available effects, pure functions can be run anywhere our hearts desire.
+
+One of my favorite quotes comes from Erlang creator, Joe Armstrong: "The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana... and the entire jungle".
+
+### Testable
+
+We simply give the function input and assert output.
+
+It's beyond the scope of this book, but I strongly encourage you to search for and try Quickcheck - a testing tool that is tailored for a purely functional environment.
+
+### Reasonable
+
+Many believe the biggest win when working with pure functions is referential transparency. A spot of code is referentially transparent when it can be substituted for its evaluated value without changing the behavior of the program.
+
+Since pure functions don't have side effects, they can only influence the behavior of a program through their output values. Furthermore, since their output values can reliably be calculated using only their input values, pure functions will always preserve referential transparency.
+
+### Parallel Code
+
+we can run any pure function in parallel since it does not need access to shared memory and it cannot, by definition, have a race condition due to some side effect.
+
 ## curry
 
 偏函数, 更为具体的应用场合
