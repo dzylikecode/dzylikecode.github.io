@@ -207,7 +207,7 @@ const map = curry((f, xs) => xs.map(f));
 
 The pattern I've followed is a simple, but important one. I've strategically positioned the data we're operating on (String, Array) as the last argument.
 
-> 偏函数化后, 容易形成数据流, 映射, 即$f \circ g \circ h (data)$
+> 偏函数化后, 容易形成数据流, 映射, 即$f \circ g \circ h (x)$, 就像一条流水线一样
 
 ### More Than a Pun/Special Sauce
 
@@ -216,6 +216,116 @@ Giving a function fewer arguments than it expects is typically called partial ap
 a higher order function is a function that takes or returns a function.
 
 ## Coding by Composing
+
+### Functional Husbandry
+
+```js
+const compose2 = (f, g) => (x) => f(g(x));
+```
+
+$f$ and $g$ are functions and $x$ is the value being "piped" through them.
+
+In our definition of compose, the g will run before the f, creating a right to left flow of data. This is much more readable than nesting a bunch of function calls.
+
+```js
+const compose2 = compose(f, g);
+```
+
+> 数据流从右往左 piped
+
+associativity: 结合律
+
+### Pointfree
+
+Pointfree style means never having to say your data. It means functions that never mention the data upon which they operate.
+
+Pointfree code can again, help us remove needless names and keep us concise and generic. Pointfree is a good litmus test for functional code as it lets us know we've got small functions that take input to output. One can't compose a while loop, for instance. Be warned, however, pointfree is a double-edged sword and can sometimes obfuscate intention. Not all functional code is pointfree and that is O.K. We'll shoot for it where we can and stick with normal functions otherwise.
+
+### Debugging
+
+If you are having trouble debugging a composition, we can use this helpful, but impure trace function to see what's going on.
+
+```js
+const trace = curry((tag, x) => {
+  console.log(tag, x);
+  return x;
+});
+
+const dasherize = compose(
+  intercalate("-"),
+  toLower,
+  trace("after split"),
+  split(" "),
+  replace(/\s{2,}/gi, " ")
+);
+
+dasherize("The world is a vampire");
+// after split [ 'The', 'world', 'is', 'a', 'vampire' ]
+```
+
+The `trace` function allows us to view the data at a certain point for debugging purposes.
+
+### Category Theory
+
+Category theory is an abstract branch of mathematics that can formalize concepts from several different branches such as set theory, type theory, group theory, logic, and more. It primarily deals with objects, morphisms, and transformations, which mirrors programming quite closely.
+
+![](assets/2022-10-28-15-33-32.png)
+
+It is defined as a collection with the following components:
+
+- A collection of objects
+- A collection of morphisms
+- A notion of composition on the morphisms
+- A distinguished morphism called identity
+
+  ```js
+  // identity
+  compose(id, f) === compose(f, id) && compose(f, id) === f;
+  // true
+  ```
+
+  Hey, it's just like the identity property on numbers!
+
+  Understand the futility.
+
+Well, we can define one for directed graphs with nodes being objects, edges being morphisms, and composition just being path concatenation. We can define with Numbers as objects and >= as morphisms (actually any partial or total order can be a category).
+
+### summary
+
+Composition connects our functions together like a series of pipes. Data will flow through our application as it must - pure functions are input to output after all, so breaking this chain would disregard output, rendering our software useless.
+
+## Example Application
+
+### Declarative Coding
+
+From here on out, we'll stop telling the computer how to do its job and instead write a specification of what we'd like as a result.
+
+Declarative, as opposed to imperative, means that we will write expressions, as opposed to step by step instructions.
+
+Think of SQL. There is no "first do this, then do that". There is one expression that specifies what we'd like from the database. We don't decide how to do the work, it does. When the database is upgraded and the SQL engine optimized, we don't have to change our query. This is because there are many ways to interpret our specification and achieve the same result.
+
+It specifies what, not how.
+
+For those of you who are thinking "Yes, but it's much faster to do the imperative loop", I suggest you educate yourself on how the JIT optimizes your code.
+
+> 优化代码这种专业的事情, 交给专业的知识
+
+```js
+// imperative
+const authenticate = (form) => {
+  const user = toUser(form);
+  return logIn(user);
+};
+
+// declarative
+const authenticate = compose(logIn, toUser);
+```
+
+The `compose` expression simply states a fact: Authentication is the composition of `toUser` and `logIn`. Again, this leaves wiggle room for support code changes and results in our application code being a high level specification.
+
+In the example above, the order of evaluation is specified (toUser must be called before logIn), but there are many scenarios where the order is not important, and this is easily specified with declarative coding (more on this later).
+
+> 这个例子顺序很重要, 但是很多时候顺序并不重要, 那这有利于并行计算
 
 ## exercise
 
@@ -276,3 +386,5 @@ https://www.zhihu.com/question/28292740
 约束自由, 解决问题的能力不变
 
 https://www.mathsisfun.com/ a good math website
+
+https://refactoring.com/
