@@ -225,6 +225,20 @@ a higher order function is a function that takes or returns a function.
 
 > 和别人讨论, 讲解, 非常有意思, 能促进自己的热情
 
+## exercise
+
+- [run exercise](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch04#running-exercises-on-your-machine-optional)
+
+  > read the introduction: [Mostly Adequate Exercises](https://github.com/MostlyAdequate/mostly-adequate-guide/tree/master/exercises)
+
+## issue
+
+- exercise 依赖包无法安装的问题
+
+  solve: https://github.com/MostlyAdequate/mostly-adequate-guide/issues/608#issuecomment-855337976
+
+  node 的版本问题
+
 ## feeling
 
 英文原版写得很有意思, 搞得我对英语很心动, 应该说是对作者的英文很心动
