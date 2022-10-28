@@ -215,15 +215,7 @@ Giving a function fewer arguments than it expects is typically called partial ap
 
 a higher order function is a function that takes or returns a function.
 
-偏函数, 更为具体的应用场合
-
-既然都是图灵完备, 那么可以相互构建, 互相混用
-
-箭头函数表达的是关系
-
-傅里叶变换和矩阵变换
-
-> 和别人讨论, 讲解, 非常有意思, 能促进自己的热情
+## Coding by Composing
 
 ## exercise
 
@@ -243,6 +235,12 @@ a higher order function is a function that takes or returns a function.
 
 英文原版写得很有意思, 搞得我对英语很心动, 应该说是对作者的英文很心动
 
+傅里叶变换和矩阵变换
+
+尽量不用分段来处理, 而是统一的性质
+
+> 和别人讨论, 讲解, 非常有意思, 能促进自己的热情
+
 ## reference
 
 - [Professor Frisby's Mostly Adequate Guide to Functional Programming](https://mostly-adequate.gitbook.io/mostly-adequate-guide/)
@@ -252,6 +250,8 @@ a higher order function is a function that takes or returns a function.
   - 中文版: [函数编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
 
   https://www.youtube.com/watch?v=65-RbBwZQdU
+
+Functional programming. (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Functional_programming
 
 https://github.com/graninas/cpp_functional_programming
 
@@ -272,8 +272,6 @@ https://www.zhihu.com/question/20943968
 https://www.zhihu.com/question/36782552
 
 https://www.zhihu.com/question/28292740
-
-B 站
 
 约束自由, 解决问题的能力不变
 
