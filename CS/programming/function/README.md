@@ -194,6 +194,27 @@ we can run any pure function in parallel since it does not need access to shared
 
 ## curry
 
+### Can't Live If Livin' Is Without You
+
+My Dad once explained how there are certain things one can live without until one acquires them. A microwave is one such thing. Smart phones, another. The older folks among us will remember a fulfilling life sans internet. For me, currying is on this list.
+
+```js
+const match = curry((what, s) => s.match(what));
+const replace = curry((what, replacement, s) => s.replace(what, replacement));
+const filter = curry((f, xs) => xs.filter(f));
+const map = curry((f, xs) => xs.map(f));
+```
+
+The pattern I've followed is a simple, but important one. I've strategically positioned the data we're operating on (String, Array) as the last argument.
+
+> 偏函数化后, 容易形成数据流, 映射, 即$f \circ g \circ h (data)$
+
+### More Than a Pun/Special Sauce
+
+Giving a function fewer arguments than it expects is typically called partial application. Partially applying a function can remove a lot of boiler plate code.
+
+a higher order function is a function that takes or returns a function.
+
 偏函数, 更为具体的应用场合
 
 既然都是图灵完备, 那么可以相互构建, 互相混用
