@@ -327,6 +327,122 @@ In the example above, the order of evaluation is specified (toUser must be calle
 
 > 这个例子顺序很重要, 但是很多时候顺序并不重要, 那这有利于并行计算
 
+We now view each line as an equation with properties that hold. We can use these properties to reason about our application and refactor.
+
+### A Principled Refactor
+
+- 性质
+
+  ```js
+  // map's composition law
+  compose(map(f), map(g)) === map(compose(f, g));
+  ```
+
+- origin code
+
+  ```js
+  // original code
+  const mediaUrl = compose(prop("m"), prop("media"));
+  const mediaUrls = compose(map(mediaUrl), prop("items"));
+  const images = compose(map(img), mediaUrls);
+  ```
+
+- reason
+
+  ```js
+  /*
+  compose(map(f), map(g)) === map(compose(f, g));
+  compose(map(img), map(mediaUrl)) === map(compose(img, mediaUrl));
+  */
+
+  const mediaUrl = compose(prop("m"), prop("media"));
+  const images = compose(map(compose(img, mediaUrl)), prop("items"));
+  ```
+
+- readable
+
+  ```js
+  const mediaUrl = compose(prop("m"), prop("media"));
+  const mediaToImg = compose(img, mediaUrl);
+  const images = compose(map(mediaToImg), prop("items"));
+  ```
+
+## Hindley-Milner and Me
+
+Types are the meta language that enables people from all different backgrounds to communicate succinctly and effectively.
+
+In a single, compact line, they expose behaviour and intention. We can derive "free theorems" from them. Types can be inferred so there's no need for explicit type annotations. They can be tuned to fine point precision or left general and abstract. They are not only useful for compile time checks, but also turn out to be the best possible documentation available.
+
+```js
+// strLength :: String -> Number
+const strLength = (s) => s.length;
+
+// join :: String -> [String] -> String
+const join = curry((what, xs) => xs.join(what));
+
+// match :: Regex -> String -> [String]
+const match = curry((reg, s) => s.match(reg));
+
+// replace :: Regex -> String -> String -> String
+const replace = curry((reg, sub, s) => s.replace(reg, sub));
+```
+
+grouping the last part in parenthesis reveals more information. Now it is seen as a function that takes a `Regex` and returns us a function from `String` to `[String]`.
+
+```js
+// match :: Regex -> (String -> [String])
+const match = curry((reg, s) => s.match(reg));
+```
+
+> Variable names like `a` and `b` are convention, but they are arbitrary and can be replaced with whatever name you'd like. If they are the same variable, they have to be the same type.
+
+> 我发现这就像量纲一样
+
+### Narrowing the Possibility
+
+Once a type variable is introduced, there emerges a curious property called parametricity. This property states that a function will act on all types in a uniform manner.
+
+This narrowing of possibility allows us to use type signature search engines like [Hoogle](https://hoogle.haskell.org/) to find a function we're after.
+
+### free as in Theorem
+
+Besides deducing implementation possibilities, this sort of reasoning gains us free theorems.
+
+example from [Wadler's paper on the subject](https://home.ttic.edu/~dreyer/course/papers/wadler.pdf)
+
+```js
+// head :: [a] -> a
+compose(f, head) === compose(head, map(f));
+
+// filter :: (a -> Bool) -> [a] -> [a]
+compose(map(f), filter(compose(p, f))) === compose(filter(p), map(f));
+```
+
+Maths has a way of formalizing the intuitive, which is helpful amidst the rigid terrain of computer logic.
+
+### Constraints
+
+One last thing to note is that we can constrain types to an interface.
+
+```js
+// sort :: Ord a => [a] -> [a]
+// assertEqual :: (Eq a, Show a) => a -> a -> Assertion
+```
+
+`a` must be an `Ord`. Or in other words, `a` must implement the `Ord` interface.
+
+### reference
+
+- Hindley–Milner type system. (2022, October 22). In Wikipedia. https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system
+
+- Parametricity. (2021, January 14). In Wikipedia. https://en.wikipedia.org/wiki/Parametricity
+
+## Tupperware
+
+### The Mighty Container
+
+We've seen how to write programs which pipe data through a series of pure functions. They are declarative specifications of behaviour. But what about control flow, error handling, asynchronous actions, state and, dare I say, effects?!
+
 ## exercise
 
 - [run exercise](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch04#running-exercises-on-your-machine-optional)
@@ -362,6 +478,10 @@ In the example above, the order of evaluation is specified (toUser must be calle
   https://www.youtube.com/watch?v=65-RbBwZQdU
 
 Functional programming. (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Functional_programming
+
+[Functional Programming Jargon](https://github.com/hemanth/functional-programming-jargon)
+
+[Category Theory for Programmers: The Preface](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)
 
 https://github.com/graninas/cpp_functional_programming
 
