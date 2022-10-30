@@ -502,6 +502,8 @@ Functors come from category theory
 
 What reason could we possibly have for bottling up a value and using map to get at it? The answer reveals itself if we choose a better question: What do we gain from asking our container to apply functions for us? Well, abstraction of function application. When we map a function, we ask the container type to run it for us. This is a very powerful concept, indeed.
 
+> 类似于数域的概念
+
 ### Schrödinger's Maybe
 
 `Container` is fairly boring. In fact, it is usually called `Identity` and has about the same impact as our `id` function. (mathematical connection)
@@ -525,9 +527,43 @@ When pushed to deal with `null` checks all the time (and there are times we know
 
 ### Pure Error Handling
 
+```js
+class Either {
+  static of(x) {
+    return new Right(x); // 这必然不会报错, 那么是个right
+  }
+
+  constructor(x) {
+    this.$value = x;
+  }
+}
+
+class Left extends Either {
+  map(f) {
+    return this;
+  }
+
+  inspect() {
+    return `Left(${inspect(this.$value)})`;
+  }
+}
+
+class Right extends Either {
+  map(f) {
+    return Either.of(f(this.$value));
+  }
+
+  inspect() {
+    return `Right(${inspect(this.$value)})`;
+  }
+}
+
+const left = (x) => new Left(x);
+```
+
 - left
 
-  left the error
+  无视 map 的请求
 
 - right
 
@@ -535,32 +571,154 @@ When pushed to deal with `null` checks all the time (and there are times we know
 
 ```js
 return isValidate ? Right(x) : Left("not valid");
+// or
+return isValidate ? Either.of(x) : left("not valid");
 ```
 
-> 我更想用 throw, 将错误抛出, 而不是返回错误代码. 就像下面的生产线
+- 个人想法
 
-![](assets/2022-10-30-11-49-00.png)
+  > 我更想用 throw, 将错误抛出, 而不是返回错误代码. 就像下面的生产线
 
-- 方便停下生产线检查
-- 下一个函数不必过多关心上一个函数返回的错误代码
+  ![](assets/2022-10-30-11-49-00.png)
 
-  错误处理与函数处理尽量是分离的
+  - 方便停下生产线检查
+  - 下一个函数不必过多关心上一个函数返回的错误代码
+
+    错误处理与函数处理尽量是分离的
+
+  ```js
+  // 使用函数包装错误处理
+  function method() {
+    let methodWithThrow = compose(f, g, h);
+    try {
+      methodWithThrow(x);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  ```
 
 ```js
-// 使用函数包装错误处理
-function method() {
-  let methodWithThrow = compose(f, g, h);
-  try {
-    methodWithThrow(x);
-  } catch (e) {
-    console.log(e);
+const moment = require("moment");
+
+// getAge :: Date -> User -> Either(String, Number)
+const getAge = curry((now, user) => {
+  const birthDate = moment(user.birthDate, "YYYY-MM-DD");
+
+  return birthDate.isValid()
+    ? Either.of(now.diff(birthDate, "years"))
+    : left("Birth date could not be parsed");
+});
+```
+
+Something to notice is that we return `Either(String, Number)`, which holds a `String` as its left value and a `Number` as its `Right`. It informs us that we're either getting an error message or the age back.
+
+At the time of calling, a function can be surrounded by `map`, which transforms it from a non-functory function to a functory one, in informal terms. We call this process lifting. Functions tend to be better off working with normal data types rather than container types, then lifted into the right container as deemed necessary. This leads to simpler, more reusable functions that can be altered to work with any functor on demand.
+
+Now, I can't help but feel I've done `Either` a disservice by introducing it as merely a container for error messages. It captures logical disjunction (a.k.a `||`) in a type. It also encodes the idea of a Coproduct from category theory, which won't be touched on in this book, but is well worth reading up on as there's properties to be exploited. It is the canonical sum type (or disjoint union of sets) because its amount of possible inhabitants is the sum of the two contained types
+
+> 能处理错误的数域
+
+### Old McDonald Had Effects...
+
+```js
+// getFromStorage :: String -> (_ -> String)
+const getFromStorage = (key) => () => localStorage[key];
+```
+
+Had we not surrounded its guts in another function, `getFromStorage` would vary its output depending on external circumstance. With the sturdy wrapper in place, we will always get the same output per input: a function that, when called, will retrieve a particular item from `localStorage`.
+
+Except, this isn't particularly useful now is it. Like a collectible action figure in its original packaging, we can't actually play with it. If only there were a way to reach inside of the container and get at its contents
+
+重点讲述了如何 purify IO
+
+Our mapped functions do not run, they get tacked on the end of a computation we're building up, function by function, like carefully placing dominoes that we don't dare tip over. The result is reminiscent of Gang of Four's command pattern or a queue.
+
+Our pure code, despite the nefarious plotting and scheming, maintains its innocence and it's the caller who gets burdened with the responsibility of actually running the effects. Let's see an example to make this concrete.
+
+> 觉得好繁琐, 不大愿意使用, 不利于调试一样的, 太 pure 了
+
+### Asynchronous Tasks
+
+用 promise 和 async/await 语法
+
+### A Spot of Theory
+
+In category theory, functors take the objects and morphisms of a category and map them to a different category.
+
+You can think of a category as a network of objects with morphisms that connect them. So a functor would map the one category to the other without breaking the network. If an object a is in our source category `C`, when we map it to category `D` with functor `F`, we refer to that object as `F a`
+
+![](assets/2022-10-30-19-59-36.png)
+
+For instance, `Maybe` maps our category of types and functions to a category where each object may not exist and each morphism has a `null` check. We accomplish this in code by surrounding each function with `map` and each type with our functor. We know that each of our normal types and functions will continue to compose in this new world. Technically, each functor in our code maps to a sub category of types and functions which makes all functors a particular brand called endofunctors, but for our purposes, we'll think of it as a different category.
+
+![](assets/2022-10-30-20-08-12.png)
+
+In addition to visualizing the mapped morphism from one category to another under the functor `F`, we see that the diagram commutes, which is to say, if you follow the arrows each route produces the same result. The different routes mean different behavior, but we always end at the same type. This formalism gives us principled ways to reason about our code - we can boldly apply formulas without having to parse and examine each individual scenario. Let's take a concrete example.
+
+```js
+// topRoute :: String -> Maybe String
+const topRoute = compose(Maybe.of, reverse);
+
+// bottomRoute :: String -> Maybe String
+const bottomRoute = compose(map(reverse), Maybe.of);
+
+topRoute("hi"); // Just('ih')
+bottomRoute("hi"); // Just('ih')
+```
+
+![](assets/2022-10-30-20-09-28.png)
+
+```js
+const nested = Task.of([Either.of("pillows"), left("no sleep for you")]);
+
+map(map(map(toUpperCase)), nested);
+// Task([Right('PILLOWS'), Left('no sleep for you')])
+```
+
+> 这里面的 nested 是嵌套的, 经过了二重映射, 所以 `toUpperCase` 也需要二重映射才是同一级别的
+
+We can instead compose functors.
+
+```js
+class Compose {
+  constructor(fgx) {
+    this.getCompose = fgx;
+  }
+
+  static of(fgx) {
+    return new Compose(fgx);
+  }
+
+  map(fn) {
+    return new Compose(map(map(fn), this.getCompose));
   }
 }
+
+const tmd = Task.of(Maybe.of("Rock over London"));
+
+const ctmd = Compose.of(tmd);
+
+const ctmd2 = map(append(", rock on, Chicago"), ctmd);
+// Compose(Task(Just('Rock over London, rock on, Chicago')))
+
+ctmd2.getCompose;
+// Task(Just('Rock over London, rock on, Chicago'))
 ```
+
+> 新的数域
+
+Functor composition is associative and earlier, we defined `Container`, which is actually called the `Identity` functor. If we have identity and associative composition we have a category. This particular category has categories as objects and functors as morphisms, which is enough to make one's brain perspire. We won't delve too far into this, but it's nice to appreciate the architectural implications or even just the simple abstract beauty in the pattern.
 
 ### reference
 
 Functor. (2022, October 5). In Wikipedia. https://en.wikipedia.org/wiki/Functor
+
+## Monadic Onions
+
+### reference
+
+Monoid. (2022, September 22). In Wikipedia. https://en.wikipedia.org/wiki/Monoid
 
 ## exercise
 
@@ -627,3 +785,17 @@ https://www.zhihu.com/question/28292740
 https://www.mathsisfun.com/ a good math website
 
 https://refactoring.com/
+
+https://github.com/xgrommx/awesome-functional-programming
+
+https://github.com/AllThingsSmitty/must-watch-javascript
+
+https://github.com/stoeffel/awesome-fp-js
+
+https://github.com/kachayev
+
+https://github.com/kachayev/gym-microrts-paper-sb3
+
+https://github.com/vwxyzjn/cleanrl
+
+https://networkx.org/
