@@ -443,6 +443,125 @@ One last thing to note is that we can constrain types to an interface.
 
 We've seen how to write programs which pipe data through a series of pure functions. They are declarative specifications of behaviour. But what about control flow, error handling, asynchronous actions, state and, dare I say, effects?!
 
+```js
+class Container {
+  constructor(x) {
+    this.$value = x;
+  }
+
+  static of(x) {
+    return new Container(x);
+  }
+}
+```
+
+- Container is an object with one property.
+
+  简单, 专一
+
+- The `$value` cannot be one specific type or our Container would hardly live up to the name.
+- Once data goes into the Container it stays there.
+
+  We could get it out by using `.$value`, but that would defeat the purpose.
+
+  容器的作用就是存放
+
+### My first Functor
+
+Once our value, whatever it may be, is in the container, we'll need a way to run functions on it.
+
+```js
+// (a -> b) -> Container a -> Container b
+Container.prototype.map = function (f) {
+  return Container.of(f(this.$value));
+};
+```
+
+> 从这里可以得出, 参数不一定要是在括号里面的, 类的调用者本身就可能是一个参数
+
+```js
+Container.of(2).map((two) => two + 2);
+// Container(4)
+
+Container.of("flamethrowers").map((s) => s.toUpperCase());
+// Container('FLAMETHROWERS')
+
+Container.of("bombs").map(append(" away")).map(prop("length"));
+// Container(10)
+```
+
+> 有一点介意的是与 compose 的顺序是相反的
+
+Our value in the `Container` is handed to the `map` function so we can fuss with it and afterward, returned to its `Container` for safe keeping.
+
+> A Functor is a type that implements map and obeys some laws. Functor is simply an interface with a contract.
+
+We could have just as easily named it Mappable
+
+Functors come from category theory
+
+What reason could we possibly have for bottling up a value and using map to get at it? The answer reveals itself if we choose a better question: What do we gain from asking our container to apply functions for us? Well, abstraction of function application. When we map a function, we ask the container type to run it for us. This is a very powerful concept, indeed.
+
+### Schrödinger's Maybe
+
+`Container` is fairly boring. In fact, it is usually called `Identity` and has about the same impact as our `id` function. (mathematical connection)
+
+Now, Maybe looks a lot like `Container` with one minor change: it will first check to see if it has a value before calling the supplied function. This has the effect of side stepping those pesky nulls as we `map`
+
+```js
+// map :: Functor f => (a -> b) -> f a -> f b
+const map = curry((f, anyFunctor) => anyFunctor.map(f));
+```
+
+The `Functor f =>` tells us that `f` must be a Functor.
+
+### Releasing the Value
+
+> "If a program has no observable effect, does it even run?"
+
+When pushed to deal with `null` checks all the time (and there are times we know with absolute certainty the value exists), most people can't help but feel it's a tad laborious. However, with time, it will become second nature and you'll likely appreciate the safety.
+
+> 处理特殊的`null`值
+
+### Pure Error Handling
+
+- left
+
+  left the error
+
+- right
+
+  continue to calculate
+
+```js
+return isValidate ? Right(x) : Left("not valid");
+```
+
+> 我更想用 throw, 将错误抛出, 而不是返回错误代码. 就像下面的生产线
+
+![](assets/2022-10-30-11-49-00.png)
+
+- 方便停下生产线检查
+- 下一个函数不必过多关心上一个函数返回的错误代码
+
+  错误处理与函数处理尽量是分离的
+
+```js
+// 使用函数包装错误处理
+function method() {
+  let methodWithThrow = compose(f, g, h);
+  try {
+    methodWithThrow(x);
+  } catch (e) {
+    console.log(e);
+  }
+}
+```
+
+### reference
+
+Functor. (2022, October 5). In Wikipedia. https://en.wikipedia.org/wiki/Functor
+
 ## exercise
 
 - [run exercise](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch04#running-exercises-on-your-machine-optional)
