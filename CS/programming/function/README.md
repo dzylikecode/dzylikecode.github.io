@@ -720,6 +720,8 @@ Functor. (2022, October 5). In Wikipedia. https://en.wikipedia.org/wiki/Functor
 
 Monoid. (2022, September 22). In Wikipedia. https://en.wikipedia.org/wiki/Monoid
 
+Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Monad_(category_theory)
+
 ## exercise
 
 - [run exercise](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch04#running-exercises-on-your-machine-optional)
