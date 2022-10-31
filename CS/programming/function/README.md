@@ -477,7 +477,7 @@ Container.prototype.map = function (f) {
 };
 ```
 
-> 从这里可以得出, 参数不一定要是在括号里面的, 类的调用者本身就可能是一个参数
+> 从这里的 type signature 可以得出, 参数不一定要是在括号里面的, 类的调用者本身就可能是一个参数
 
 ```js
 Container.of(2).map((two) => two + 2);
@@ -714,11 +714,19 @@ Functor composition is associative and earlier, we defined `Container`, which is
 
 Functor. (2022, October 5). In Wikipedia. https://en.wikipedia.org/wiki/Functor
 
+Monoid. (2022, September 22). In Wikipedia. https://en.wikipedia.org/wiki/Monoid
+
 ## Monadic Onions
 
-### reference
+Turns out, it is not there to avoid the new keyword, but rather to place values in what's called a default minimal context. Yes, `of` does not actually take the place of a constructor - it is part of an important interface we call Pointed.
 
-Monoid. (2022, September 22). In Wikipedia. https://en.wikipedia.org/wiki/Monoid
+> A pointed functor is a functor with an `of` method
+
+If you recall, `IO` and `Task`'s constructors expect a function as their argument, but `Maybe` and `Either` do not. The motivation for this interface is a common, consistent way to place a value into our functor without the complexities and specific demands of constructors. The term "default minimal context" lacks precision, yet captures the idea well: we'd like to lift any value in our type and `map` away per usual with the expected behaviour of whichever functor.
+
+### Mixing Metaphors
+
+### reference
 
 Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Monad_(category_theory)
 
@@ -756,9 +764,11 @@ Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.
 
   https://www.youtube.com/watch?v=65-RbBwZQdU
 
-Functional programming. (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Functional_programming
+- Functional programming. (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Functional_programming
 
-[Functional Programming Jargon](https://github.com/hemanth/functional-programming-jargon)
+- [Functional Programming Jargon](https://github.com/hemanth/functional-programming-jargon)
+
+  概念快速预览
 
 [Category Theory for Programmers: The Preface](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)
 
@@ -801,3 +811,11 @@ https://github.com/kachayev/gym-microrts-paper-sb3
 https://github.com/vwxyzjn/cleanrl
 
 https://networkx.org/
+
+- functional programming example: game
+
+  [Using functional programming to create a game in JS](https://cheesecakelabs.com/blog/functional-programming-game-js/)
+
+  repo: [functional-spaceship-game](https://github.com/karranb/functional-spaceship-game)
+
+- [Functional-Light JavaScript](https://github.com/getify/Functional-Light-JS)
