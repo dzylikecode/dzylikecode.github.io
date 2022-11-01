@@ -726,6 +726,26 @@ If you recall, `IO` and `Task`'s constructors expect a function as their argumen
 
 ### Mixing Metaphors
 
+```js
+const fs = require("fs");
+
+// readFile :: String -> IO String
+const readFile = (filename) => new IO(() => fs.readFileSync(filename, "utf-8"));
+
+// print :: String -> IO String
+const print = (x) =>
+  new IO(() => {
+    console.log(x);
+    return x;
+  });
+
+// cat :: String -> IO (IO String)
+const cat = compose(map(print), readFile);
+
+cat(".git/config");
+// IO(IO('[core]\nrepositoryformatversion = 0\n'))
+```
+
 ### reference
 
 Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Monad_(category_theory)
@@ -770,7 +790,27 @@ Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.
 
   概念快速预览
 
-[Category Theory for Programmers: The Preface](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)
+  中文版: https://github.com/shfshanyue/fp-jargon-zh
+
+  中文快速了解: [函数式编程入门教程](http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html)
+
+- js 的代数术语: [Fantasy Land Specification](https://github.com/fantasyland/fantasy-land)
+
+- [Category Theory for Programmers: The Preface](https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/)
+
+- [Functor, Pointed Functor, Monad and Applicative Functor in JS](https://leandromoreira.com/2016/09/08/functor-pointed-functor-monad-and-applicative-functor-in-js/)
+
+  example
+
+- [Why Category Theory Matters](https://rs.io/why-category-theory-matters/)
+
+- [homomorphism](https://www.britannica.com/science/homomorphism)
+
+- Homomorphism. (2022, July 11). In Wikipedia. https://en.wikipedia.org/wiki/Homomorphism
+
+- [Functional Programming In Games](https://github.com/Andrea/FunctionalProgrammingInGames)
+
+- [Is functional programming suitable for game development?](https://www.quora.com/Is-functional-programming-suitable-for-game-development)
 
 https://github.com/graninas/cpp_functional_programming
 
