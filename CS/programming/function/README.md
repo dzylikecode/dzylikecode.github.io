@@ -746,6 +746,86 @@ cat(".git/config");
 // IO(IO('[core]\nrepositoryformatversion = 0\n'))
 ```
 
+What we've got here is an `IO` trapped inside another `IO` because print introduced a second `IO` during our `map`. To continue working with our string, we must `map(map(f))` and to observe the effect, we must `unsafePerformIO().unsafePerformIO()`.
+
+> 由于 print 是将普通的映射到 IO 范畴, 在 IO 范畴上将映射到 IO 的 IO, 而调用它时, 不得不`unsafePerformIO().unsafePerformIO()`, 就像剥洋葱一样(多少感觉, unsafePerformIO()像是一个逆, 将它从 IO 中取出)
+
+I said monads are like onions because tears well up as we peel back each layer of the nested functor with `map` to get at the inner value. We can dry our eyes, take a deep breath, and use a method called `join`.
+
+If we have two layers of the same type, we can smash them together with `join`. This ability to join together, this functor matrimony, is what makes a monad a monad.
+
+> Monads are pointed functors that can flatten
+
+Any functor which defines a `join` method, has an of method, and obeys a few laws is a monad.
+
+```js
+Maybe.prototype.join = function join() {
+  return this.isNothing() ? Maybe.of(null) : this.$value;
+};
+IO.prototype.join = () => this.unsafePerformIO();
+```
+
+### My Chain Hits My Chest
+
+You might have noticed a pattern. We often end up calling `join` right after a `map`. Let's abstract this into a function called `chain`.
+
+If you've read about monads previously, you might have seen `chain` called `>>=` (pronounced bind) or `flatMap` which are all aliases for the same concept. I personally think `flatMap` is the most accurate name, but we'll stick with `chain` as it's the widely accepted name in JS.
+
+```js
+// getJSON :: Url -> Params -> Task JSON
+getJSON("/authenticate", { username: "stale", password: "crackers" }).chain(
+  (user) => getJSON("/friends", { user_id: user.id })
+);
+// Task([{name: 'Seimith', id: 14}, {name: 'Ric', id: 39}]);
+
+// querySelector :: Selector -> IO DOM
+querySelector("input.username").chain(({ value: uname }) =>
+  querySelector("input.email").chain(({ value: email }) =>
+    IO.of(`Welcome ${uname} prepare for spam at ${email}`)
+  )
+);
+// IO('Welcome Olivia prepare for spam at olivia@tremorcontrol.net');
+
+Maybe.of(3).chain((three) => Maybe.of(2).map(add(three)));
+// Maybe(5);
+
+Maybe.of(null).chain(safeProp("address")).chain(safeProp("street"));
+// Maybe(null);
+```
+
+> 根据 type signature 来判断是使用 chain 还是 map
+
+An interesting fact is that we can derive `map` for free if we've created `chain` simply by bottling the value back up when we're finished with `of`. With `chain`, we can also define `join` as `chain(id)`.
+
+Don't worry if these examples are hard to grasp at first. Play with them. Poke them with a stick. Smash them to bits and reassemble. Remember to `map` when returning a "normal" value and `chain` when we're returning another functor.
+
+As a reminder, this does not work with two different nested types. Functor composition and later, monad transformers, can help us in that situation.
+
+```js
+// readFile :: Filename -> Either String (Task Error String)
+// httpPost :: String -> String -> Task Error JSON
+// upload :: String -> Either String (Task Error JSON)
+const upload = compose(map(chain(httpPost("/uploads"))), readFile);
+```
+
+> 理解到 `chain = map * join`, `join` 相当于有个对返回值映射的逆
+
+### Theory
+
+```js
+// associativity
+compose(join, map(join)) === compose(join, join);
+```
+
+![](assets/2022-11-01-15-45-30.png)
+
+```js
+// identity for all (M a)
+compose(join, of) === compose(join, map(of)) && compose(join, map(of)) === id;
+```
+
+![](assets/2022-11-01-15-47-54.png)
+
 ### reference
 
 Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Monad_(category_theory)
@@ -781,6 +861,8 @@ Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.
   - GitHub repo: https://github.com/MostlyAdequate/mostly-adequate-guide
 
   - 中文版: [函数编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
+
+    repo: https://github.com/llh911001/mostly-adequate-guide-chinese
 
   https://www.youtube.com/watch?v=65-RbBwZQdU
 
