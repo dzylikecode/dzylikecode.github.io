@@ -826,9 +826,69 @@ compose(join, of) === compose(join, map(of)) && compose(join, map(of)) === id;
 
 ![](assets/2022-11-01-15-47-54.png)
 
+Monads form a category called the "Kleisli category" where all objects are monads and morphisms are chained functions. I don't mean to taunt you with bits and bobs of category theory without much explanation of how the jigsaw fits together. The intention is to scratch the surface enough to show the relevance and spark some interest while focusing on the practical properties we can use each day.
+
+### exercise
+
+```js
+// For this exercise, we consider helpers with the following signatures:
+//
+//   validateEmail :: Email -> Either String Email
+//   addToMailingList :: Email -> IO([Email])
+//   emailBlast :: [Email] -> IO ()
+//
+// Use `validateEmail`, `addToMailingList` and `emailBlast` to create a function
+// which adds a new email to the mailing list if valid, and then notify the whole
+// list.
+
+// joinMailingList :: Email -> Either String (IO ())
+const joinMailingList = undefined;
+```
+
+<details><summary>answer</summary>
+
+```js
+// 第一种方式
+const joinMailingList = compose(
+  map(compose(chain(emailBlast), addToMailingList)),
+  validateEmail
+);
+
+// 等价于第二种方式
+const joinMailingList = compose(
+  map(chain(emailBlast)),
+  map(addToMailingList),
+  validateEmail
+);
+```
+
+!> 重点是 map 与 chain 的顺序, 是`chain(map(f))`还是`map(chain(f))`
+
+f: x -> containerA(y)
+
+- chain(map(f))
+
+  map(f): containerB(x) -> containerB(containerA(y))
+
+  chain(map(f)): containerC(containerB(x)) -> containerC(containerA(y))
+
+- map(chain(f))
+
+  chain(f): containerB(x) -> containerB(y)
+
+  chain(map(f)): containerC(containerB(x)) -> containerC(containerB(y))
+
+> chain(f) 会剥掉 f 的洋葱层, 意味着 chain(map(f))会剥掉 map(f)的洋葱层
+
+觉得线用第一种书写比较自然, 然后再变形成第二种方式
+
+</details>
+
 ### reference
 
 Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.org/wiki/Monad_(category_theory)
+
+## Applicative Functors
 
 ## exercise
 
