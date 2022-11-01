@@ -6,6 +6,8 @@
 
 ## emoji
 
+https://github.com/ikatyang/emoji-cheat-sheet
+
 ### People
 
 | :bowtie: `:bowtie:`                                             | :smile: `:smile:`                                               | :laughing: `:laughing:`                     |
