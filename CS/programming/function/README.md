@@ -890,6 +890,201 @@ Monad (category theory). (2022, October 23). In Wikipedia. https://en.wikipedia.
 
 ## Applicative Functors
 
+the name should spill the beans on what this interface gives us: the ability to apply functors to each other.
+
+```js
+// Let's use our trusty map
+const containerOfAdd2 = map(add, Container.of(2));
+// Container(add(2))
+```
+
+> 在`Container()`里面运行 `add` 函数
+
+we'd like to apply its `add(2)` to the `3` in `Container(3)` to complete the call.
+
+We can chain and then `map` the partially applied `add(2)` like so:
+
+```js
+Container.of(2).chain((two) => Container.of(3).map(add(two)));
+```
+
+> 先 partially apply 2, 然后是 3, 但是这样`3`进入了嵌套, 而且这种代价是必须要执行完 Container(2), 才能执行 Container(3), 牺牲了并行, 与 curry 是不同的
+
+The issue here is that we are stuck in the sequential world of monads wherein nothing may be evaluated until the previous monad has finished its business. We have ourselves two strong, independent values and I should think it unnecessary to delay the creation of `Container(3)` merely to satisfy the monad's sequential demands.
+
+### Ships in Bottles
+
+![](assets/2022-11-02-11-30-02.png)
+
+`ap` is a function that can apply the function contents of one functor to the value contents of another.
+
+```js
+Container.of(add(2)).ap(Container.of(3));
+// Container(5)
+
+// all together now
+
+Container.of(2).map(add).ap(Container.of(3));
+// Container(5)
+```
+
+```js
+Container.prototype.ap = function (otherContainer) {
+  return otherContainer.map(this.$value);
+};
+```
+
+`this.$value` will be a function and we'll be accepting another functor so we need only `map` it.
+
+> An applicative functor is a pointed functor with an `ap` method
+
+```js
+F.of(x).map(f) === F.of(f).ap(F.of(x));
+```
+
+> `ap`就像把输入的洋葱层剥掉, `chain`把输出的洋葱层剥掉
+
+In proper English, mapping `f` is equivalent to `ap`ing a functor of `f`. Or in properer English, we can place `x` into our container and `map(f)` OR we can lift both `f` and `x` into our container and `ap` them.
+
+- `F.of(x).map(f)`
+
+  等价于`map(f)(F.of(x))`
+
+- `F.of(f).ap(F.of(x))`
+
+  首先把`F.of(f)`的洋葱层剥掉, 变成`f`, 然后在`map`
+
+  !> `map`输出后会包上一层洋葱, 如下, 执行完数字 2 后, 会包上一层洋葱, 然后再执行数字 3
+
+  ```js
+  Maybe.of(add).ap(Maybe.of(2)).ap(Maybe.of(3));
+  // Maybe(5)
+
+  Task.of(add).ap(Task.of(2)).ap(Task.of(3));
+  // Task(5)
+  ```
+
+  另一个角度来看, 非常像在 bottle 中的 ship
+
+Using `of`, each value gets transported to the magical land of containers, this parallel universe where each application can be async or null or what have you and `ap` will apply functions within this fantastical place. It's like building a ship in a bottle.
+
+!> 一定要是 curry
+
+### Coordination Motivation
+
+```js
+// Http.get :: String -> Task Error HTML
+
+const renderPage = curry((destinations, events) => {
+  /* render page */
+});
+
+Task.of(renderPage).ap(Http.get("/destinations")).ap(Http.get("/events"));
+// Task("<div>some page with dest and events</div>")
+```
+
+非常容易并行执行, 因为 Http.get 并没有执行, 而是放在`Container`里面啦
+
+```js
+// checkEmail :: User -> Either String Email
+// checkName :: User -> Either String String
+
+const user = {
+  name: "John Doe",
+  email: "blurp_blurp",
+};
+
+//  createUser :: Email -> String -> IO User
+const createUser = curry((email, name) => {
+  /* creating... */
+});
+
+Either.of(createUser).ap(checkEmail(user)).ap(checkName(user));
+// Left('invalid email')
+
+liftA2(createUser, checkEmail(user), checkName(user));
+// Left('invalid email')
+```
+
+The two statements are equivalent, but the `liftA2` version has no mention of `Either`. This makes it more generic and flexible since we are no longer married to a specific type.
+
+### Operators
+
+```js
+// JavaScript
+map(add, Right(2)).ap(Right(3));
+```
+
+### Free Can Openers
+
+Seeing as all of these interfaces are built off of each other and obey a set of laws, we can define some weaker interfaces in terms of the stronger ones.
+
+```js
+// map derived from of/ap
+X.prototype.map = function map(f) {
+  return this.constructor.of(f).ap(this);
+};
+```
+
+```js
+// map derived from chain
+X.prototype.map = function map(f) {
+  return this.chain((a) => this.constructor.of(f(a)));
+};
+
+// ap derived from chain/map
+X.prototype.ap = function ap(other) {
+  return this.chain((f) => other.map(f));
+};
+```
+
+It should be pointed out that part of `ap`'s appeal is the ability to run things concurrently so defining it via `chain` is missing out on that optimization. Despite that, it's good to have an immediate working interface while one works out the best possible implementation.
+
+Why not just use monads and be done with it, you ask? It's good practice to work with the level of power you need, no more, no less. This keeps cognitive load to a minimum by ruling out possible functionality. For this reason, it's good to favor applicatives over monads.
+
+### Laws
+
+First off, you should know that applicatives are "closed under composition", meaning `ap` will never change container types on us
+
+- Identity
+
+  ```js
+  // identity
+  A.of(id).ap(v) === v;
+  ```
+
+- Homomorphism
+
+  ```js
+  // homomorphism
+  A.of(f).ap(A.of(x)) === A.of(f(x));
+  ```
+
+  A homomorphism is just a structure preserving map. In fact, a functor is just a homomorphism between categories as it preserves the original category's structure under the mapping.
+
+  ```js
+  Either.of(toUpperCase).ap(Either.of("oreos")) ===
+    Either.of(toUpperCase("oreos"));
+  ```
+
+- Interchange
+
+  The interchange law states that it doesn't matter if we choose to lift our function into the left or right side of `ap`.
+
+  ```js
+  // interchange
+  v.ap(A.of(x)) === A.of((f) => f(x)).ap(v);
+  ```
+
+  都等价于`v(x)`
+
+- Composition
+
+  ```js
+  // composition
+  A.of(compose).ap(u).ap(v).ap(w) === u.ap(v.ap(w));
+  ```
+
 ## exercise
 
 - [run exercise](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch04#running-exercises-on-your-machine-optional)
