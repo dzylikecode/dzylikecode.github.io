@@ -1085,6 +1085,145 @@ First off, you should know that applicatives are "closed under composition", mea
   A.of(compose).ap(u).ap(v).ap(w) === u.ap(v.ap(w));
   ```
 
+## Transform Again, Naturally
+
+We are about to discuss natural transformations in the context of practical utility in every day code. It just so happens they are a pillar of category theory and absolutely indispensable when applying mathematics to reason about and refactor our code.
+
+### All Natural
+
+A Natural Transformation is a "morphism between functors", that is, a function which operates on the containers themselves. Typewise, it is a function `(Functor f, Functor g) => f a -> g a`. What makes it special is that we cannot, for any reason, peek at the contents of our functor. This is a structural operation. A functorial costume change.
+
+![](assets/2022-11-02-15-07-19.png)
+
+```js
+// nt :: (Functor f, Functor g) => f a -> g a
+compose(map(f), nt) === compose(nt, map(f));
+```
+
+We can run our natural transformation then `map` or `map` then run our natural transformation and get the same result.
+
+### Principled Type Conversions
+
+We're just changing one functor to another. We are permitted to lose information along the way so long as the value we'll `map` doesn't get lost in the shape shift shuffle. That is the whole point: `map` must carry on, according to our definition, even after the transformation.
+
+```js
+// arrayToList :: [a] -> List a
+const arrayToList = List.of;
+
+const doListyThings = compose(sortBy(h), filter(g), arrayToList, map(f));
+const doListyThings_ = compose(sortBy(h), filter(g), map(f), arrayToList); // law applied
+```
+
+Also, it becomes easier to optimize / fuse operations by moving `map(f)` to the left of natural transformation as shown in `doListyThings_`.
+
+### Isomorphic JavaScript
+
+When we can completely go back and forth without losing any information, that is considered an isomorphism. That's just a fancy word for "holds the same data". We say that two types are isomorphic if we can provide the "to" and "from" natural transformations as proof:
+
+```js
+// promiseToTask :: Promise a b -> Task a b
+const promiseToTask = (x) =>
+  new Task((reject, resolve) => x.then(resolve).catch(reject));
+
+// taskToPromise :: Task a b -> Promise a b
+const taskToPromise = (x) =>
+  new Promise((resolve, reject) => x.fork(reject, resolve));
+
+const x = Promise.resolve("ring");
+taskToPromise(promiseToTask(x)) === x;
+
+const y = Task.of("rabbit");
+promiseToTask(taskToPromise(y)) === y;
+```
+
+Q.E.D. `Promise` and `Task` are isomorphic.
+
+As a counter example, arrayToMaybe is not an isomorphism since it loses information:
+
+```js
+// maybeToArray :: Maybe a -> [a]
+const maybeToArray = (x) => (x.isNothing ? [] : [x.$value]);
+
+// arrayToMaybe :: [a] -> Maybe a
+const arrayToMaybe = (x) => Maybe.of(x[0]);
+
+const x = ["elvis costello", "the attractions"];
+
+// not isomorphic
+maybeToArray(arrayToMaybe(x)); // ['elvis costello']
+
+// but is a natural transformation
+compose(arrayToMaybe, map(replace("elvis", "lou")))(x); // Just('lou costello')
+// ==
+compose(map(replace("elvis", "lou"), arrayToMaybe))(x); // Just('lou costello')
+```
+
+They are indeed natural transformations, however, since `map` on either side yields the same result.
+
+### A Broader Definition
+
+These structural functions aren't limited to type conversions by any means.
+
+```js
+reverse :: [a] -> [a]
+
+join :: (Monad m) => m (m a) -> m a
+
+head :: [a] -> a
+
+of :: a -> f a
+```
+
+The natural transformation laws hold for these functions too. One thing that might trip you up is that `head :: [a] -> a` can be viewed as `head :: [a] -> Identity a`. We are free to insert Identity wherever we please whilst proving laws since we can, in turn, prove that `a` is isomorphic to `Identity` a (see, I told you isomorphisms were pervasive).
+
+可以将上述函数看作类型转化, 这样就可以用 natural transformation 的法则
+
+> 有意思的是 reverse 可以看作是一个范畴到另一个范畴, 尽管他们是一样的, 镜像空间
+
+### One Nesting Solution
+
+```js
+// getValue :: Selector -> Task Error (Maybe String)
+// postComment :: String -> Task Error Comment
+// validate :: String -> Either ValidationError String
+
+// saveComment :: () -> Task Error (Maybe (Either ValidationError (Task Error Comment)))
+const saveComment = compose(
+  map(map(map(postComment))),
+  map(map(validate)),
+  getValue("#comment")
+);
+```
+
+We can compose the types into one monstrous container, sort and `join` a few, homogenize them, deconstruct them, and so on.
+
+we'll focus on homogenizing them via natural transformations.
+
+```js
+// getValue :: Selector -> Task Error (Maybe String)
+// postComment :: String -> Task Error Comment
+// validate :: String -> Either ValidationError String
+
+// saveComment :: () -> Task Error Comment
+const saveComment = compose(
+  chain(postComment),
+  chain(eitherToTask),
+  map(validate),
+  chain(maybeToTask),
+  getValue("#comment")
+);
+```
+
+We've simply added `chain(maybeToTask)` and `chain(eitherToTask)`. Both have the same effect; they naturally transform the functor our `Task` is holding into another `Task` then `join` the two. Like pigeon spikes on a window ledge, we avoid nesting right at the source. As they say in the city of light, "Mieux vaut prévenir que guérir" - an ounce of prevention is worth a pound of cure.
+
+### reference
+
+Natural transformation. (2022, October 31). In Wikipedia. https://en.wikipedia.org/wiki/Natural_transformation
+
+Isomorphism. (2022, October 19). In Wikipedia. https://en.wikipedia.org/wiki/Isomorphism
+
+## Traversing the Stone
+
 ## exercise
 
 - [run exercise](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch04#running-exercises-on-your-machine-optional)
@@ -1115,9 +1254,13 @@ First off, you should know that applicatives are "closed under composition", mea
 
   - GitHub repo: https://github.com/MostlyAdequate/mostly-adequate-guide
 
+    更为详细, 有第 13 章的内容
+
   - 中文版: [函数编程指北](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
 
     repo: https://github.com/llh911001/mostly-adequate-guide-chinese
+
+    更新快
 
   https://www.youtube.com/watch?v=65-RbBwZQdU
 
