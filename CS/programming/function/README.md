@@ -1224,6 +1224,232 @@ Isomorphism. (2022, October 19). In Wikipedia. https://en.wikipedia.org/wiki/Iso
 
 ## Traversing the Stone
 
+```js
+// readFile :: FileName -> Task Error String
+
+// firstWords :: String -> String
+const firstWords = compose(intercalate(" "), take(3), split(" "));
+
+// tldr :: FileName -> Task Error String
+const tldr = compose(map(firstWords), readFile);
+
+map(tldr, ["file1", "file2"]);
+// [Task('hail the monarchy'), Task('smash the patriarchy')]
+```
+
+也许我们更希望得到`Task(['hail the monarchy', 'smash the patriarchy'])`
+
+`IO (Maybe (IO Node))`转化为`IO (Maybe (IO Node))`
+
+The Traversable interface consists of two glorious functions: `sequence` and `traverse`.
+
+`sequence`:
+
+```js
+sequence(List.of, Maybe.of(["the facts"])); // [Just('the facts')]
+sequence(Task.of, new Map({ a: Task.of(1), b: Task.of(2) })); // Task(Map({ a: 1, b: 2 }))
+sequence(IO.of, Either.of(IO.of("buckle my shoe"))); // IO(Right('buckle my shoe'))
+sequence(Either.of, [Either.of("wing")]); // Right(['wing'])
+sequence(Task.of, left("wing")); // Task(Left('wing'))
+```
+
+```js
+// sequence :: (Traversable t, Applicative f) => (a -> f a) -> t (f a) -> f (t a)
+const sequence = curry((of, x) => x.sequence(of));
+```
+
+> 发现还是有面向对象, 对象拥有某个性质
+
+```js
+class Right extends Either {
+  // ...
+  sequence(of) {
+    return this.$value.map(Either.of);
+  }
+}
+```
+
+if our `$value` is a functor (it must be an applicative, in fact), we can simply `map` our constructor to leap frog the type.
+
+```js
+class Left extends Either {
+  // ...
+  sequence(of) {
+    return of(this);
+  }
+}
+```
+
+We'd like the types to always end up in the same arrangement, therefore it is necessary for types like `Left` who don't actually hold our inner applicative to get a little help in doing so. The Applicative interface requires that we first have a Pointed Functor so we'll always have a `of` to pass in. In a language with a type system, the outer type can be inferred from the signature and does not need to be explicitly given.
+
+### Effect Assortment
+
+```js
+// fromPredicate :: (a -> Bool) -> a -> Either e a
+
+// partition :: (a -> Bool) -> [a] -> [Either e a]
+const partition = (f) => map(fromPredicate(f));
+
+// validate :: (a -> Bool) -> [a] -> Either e [a]
+const validate = (f) => traverse(Either.of, fromPredicate(f));
+```
+
+Let's look at the `traverse` function of `List`, to see how the `validate` method is made.
+
+```js
+traverse(of, fn) {
+    return this.$value.reduce(
+      (f, a) => fn(a).map(b => bs => bs.concat(b)).ap(f),
+      of(new List([])),
+    );
+  }
+```
+
+- `reduce(..., ...)`
+
+  - `f` is the accumulator
+
+    也是一个 functor
+
+  - `a` is the current value
+  - `of(new List([]))`: functor of empty list
+
+  > `this.$value` 也是它的参数: `[a]`
+
+  即: `[a] -> func -> f -> f`
+
+  `func`的作用是归约值放入 functor 当中:`(f -> a -> f)`
+
+  即: `[a] -> (f -> a -> f) -> f -> f`
+
+因此知道:`fn(a).map(b => bs => bs.concat(b)).ap(f)`是一个 functor
+
+- `fn(a)`
+
+  `fn`是一个函数, 由`fromPredicate(f)`知: `a -> Either e a`
+
+  故`fn(a)`: `Either e a`
+
+- `of(new List([]))`
+
+  `Right([]) :: Either e [a]`
+
+- `.map(b => bs => bs.concat(b))`
+
+  得到的是`Either e(bs => bs.concat(b))`
+
+  刚好可以与`.ap(f)`运算
+
+This apparently miraculous transformation is achieved with just 6 measly lines of code in `List.traverse`, and is accomplished with `of`, `map` and `ap`, so will work for any Applicative Functor. This is a great example of how those abstraction can help to write highly generic code with only a few assumptions (that can, incidentally, be declared and checked at the type level!).
+
+> `traverse(of, fn)`包含了 map, `sequence` 针对的是 Container
+
+### Waltz of the Types
+
+> 确实就像 Waltz 一样, 突然伴侣相互交换身位 wei
+
+```js
+// readFile :: FileName -> Task Error String
+
+// firstWords :: String -> String
+const firstWords = compose(intercalate(" "), take(3), split(" "));
+
+// tldr :: FileName -> Task Error String
+const tldr = compose(map(firstWords), readFile);
+
+traverse(Task.of, tldr, ["file1", "file2"]);
+// Task(['hail the monarchy', 'smash the patriarchy']);
+```
+
+Using `traverse` instead of `map`, we've successfully herded those unruly `Tasks` into a nice coordinated array of results.
+
+```js
+// getAttribute :: String -> Node -> Maybe String
+// $ :: Selector -> IO Node
+
+// getControlNode :: Selector -> IO (Maybe (IO Node))
+const getControlNode = compose(
+  map(map($)),
+  map(getAttribute("aria-controls")),
+  $
+);
+```
+
+```js
+// getAttribute :: String -> Node -> Maybe String
+// $ :: Selector -> IO Node
+
+// getControlNode :: Selector -> IO (Maybe Node)
+const getControlNode = compose(
+  chain(traverse(IO.of, $)),
+  map(getAttribute("aria-controls")),
+  $
+);
+```
+
+### No Law and Order
+
+'Tis my conjecture that the goal of most program architecture is an attempt to place useful restrictions on our code to narrow the possibilities, to guide us into the answers as designers and readers.
+
+- Identity
+
+  ```js
+  const identity1 = compose(sequence(Identity.of), map(Identity.of));
+  const identity2 = Identity.of;
+
+  // test it out with Right
+  identity1(Either.of("stuff"));
+  // Identity(Right('stuff'))
+
+  identity2(Either.of("stuff"));
+  // Identity(Right('stuff'))
+  ```
+
+  An arbitrary functor there is normal, however, the use of a concrete functor here, namely `Identity` in the law itself might raise some eyebrows. Remember a category is defined by morphisms between its objects that have associative composition and identity. When dealing with the category of functors, natural transformations are the morphisms and `Identity` is, well `identity`.
+
+- Composition
+
+  ```js
+  const comp1 = compose(sequence(Compose.of), map(Compose.of));
+  const comp2 = (Fof, Gof) =>
+    compose(Compose.of, map(sequence(Gof)), sequence(Fof));
+
+  // Test it out with some types we have lying around
+  comp1(Identity(Right([true])));
+  // Compose(Right([Identity(true)]))
+
+  comp2(Either.of, Array)(Identity(Right([true])));
+  // Compose(Right([Identity(true)]))
+  ```
+
+  As a natural consequence of the above law, we get the ability to [fuse traversals](https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf), which is nice from a performance standpoint.
+
+- Naturality
+
+  ```js
+  const natLaw1 = (of, nt) => compose(nt, sequence(of));
+  const natLaw2 = (of, nt) => compose(sequence(of), map(nt));
+
+  // test with a random natural transformation and our friendly Identity/Right functors.
+
+  // maybeToEither :: Maybe a -> Either () a
+  const maybeToEither = (x) => (x.$value ? new Right(x.$value) : new Left());
+
+  natLaw1(Maybe.of, maybeToEither)(Identity.of(Maybe.of("barlow one")));
+  // Right(Identity('barlow one'))
+
+  natLaw2(Either.of, maybeToEither)(Identity.of(Maybe.of("barlow one")));
+  // Right(Identity('barlow one'))
+  ```
+
+  If we first swing the types around then run a natural transformation on the outside, that should equal mapping a natural transformation, then flipping the types.
+
+  A natural consequence of this law is:
+
+  ```js
+  traverse(A.of, A.of) === A.of;
+  ```
+
 ## exercise
 
 - [run exercise](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch04#running-exercises-on-your-machine-optional)
