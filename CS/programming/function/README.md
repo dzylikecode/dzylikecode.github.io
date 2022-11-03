@@ -1342,7 +1342,7 @@ traverse(of, fn) {
 
 This apparently miraculous transformation is achieved with just 6 measly lines of code in `List.traverse`, and is accomplished with `of`, `map` and `ap`, so will work for any Applicative Functor. This is a great example of how those abstraction can help to write highly generic code with only a few assumptions (that can, incidentally, be declared and checked at the type level!).
 
-> `traverse(of, fn)`包含了 map, `sequence` 针对的是 Container
+> `traverse(of, fn)`包含了 map, `compose(sequence(of), map(fn)) === traverse(of, fn)`
 
 ### Waltz of the Types
 
@@ -1449,6 +1449,188 @@ const getControlNode = compose(
   ```js
   traverse(A.of, A.of) === A.of;
   ```
+
+## Monoids bring it all together
+
+Monoids are about combination. But what is combination? It can mean so many things from accumulation to concatenation to multiplication to choice, composition, ordering, even evaluation! We'll see many examples here, but we'll only tip-toe on the foothills of monoid mountain. The instances are plentiful and applications vast. The aim of this chapter is to provide a good intuition so you can make some monoids of your own.
+
+### Abstracting addition
+
+Some might say numbers are "closed under addition", meaning the type won't ever change no matter which ones get tossed into the mix. That means we can chain the operation since the result is always another number:
+
+```js
+// we can run this on any amount of numbers
+1 + 7 + 5 + 4 + ...
+```
+
+> 来自于操作的封闭性
+
+In addition to that (what a calculated pun...), we have associativity which buys us the ability to group operations however we please. Incidentally, an associative, binary operation is a recipe for parallel computation because we can chunk and distribute work.
+
+Come to think of it, what properties should be in our abstract superclass anyways? What traits are specific to addition and what ones can be generalized? Are there other abstractions amidst this hierarchy or is it all one chunk? It's this kind of thinking that our mathematical forefathers applied when conceiving the interfaces in abstract algebra.
+
+As it happens, those old school abstractionists landed on the concept of a group when abstracting addition. A group has all the bells and whistles including the concept of negative numbers. Here, we're only interested in that associative binary operator so we'll choose the less specific interface Semigroup. A Semigroup is a type with a `concat` method which acts as our associative binary operator.
+
+```js
+const Sum = (x) => ({
+  x,
+  concat: (other) => Sum(x + other.x),
+});
+```
+
+I've used an object factory here instead of our typical prototype ceremony, primarily because `Sum` is not pointed and we don't want to have to type `new`.
+
+Just like that, we can program to an interface, not an implementation. Since this interface comes from group theory it has centuries of literature backing it up. Free docs!
+
+`Sum` is not pointed, nor a functor.
+
+### All my favourite functors are semigroups.
+
+The types we've seen so far which implement the functor interface all implement semigroup one as well.
+
+```js
+Identity.prototype.concat = function (other) {
+  return new Identity(this.__value.concat(other.__value));
+};
+
+Identity.of(Sum(4)).concat(Identity.of(Sum(1))); // Identity(Sum(5))
+Identity.of(4).concat(Identity.of(1)); // TypeError: this.__value.concat is not a function
+```
+
+It is a semigroup if and only if its `__value` is a semigroup.
+
+In fact, it turns out that anything made up entirely of semigroups, is itself, a semigroup: if we can concat the kit, then we can concat the caboodle.
+
+### Monoids for nothing
+
+Zero acts as identity meaning any element added to `0`, will return back that very same element. Abstraction-wise, it's helpful to think of `0` as a kind of neutral or empty element. It's important that it act the same way on the left and right side of our binary operation
+
+Let's call this concept `empty` and create a new interface with it.
+
+```js
+Array.empty = () => [];
+String.empty = () => "";
+Sum.empty = () => Sum(0);
+Product.empty = () => Product(1);
+Min.empty = () => Min(Infinity);
+Max.empty = () => Max(-Infinity);
+All.empty = () => All(true);
+Any.empty = () => Any(false);
+```
+
+Codewise, they correspond to sensible defaults:
+
+```js
+const settings = (prefix="", overrides=[], total=0) => ...
+
+const settings = (prefix=String.empty(), overrides=Array.empty(), total=Sum.empty()) => ...
+```
+
+### Folding down the house
+
+```js
+// concat :: Semigroup s => s -> s -> s
+const concat = x => y => x.concat(y)
+
+[Sum(1), Sum(2)].reduce(concat) // Sum(3)
+
+[].reduce(concat) // TypeError: Reduce of empty array with no initial value
+```
+
+```js
+// fold :: Monoid m => m -> [m] -> m
+const fold = reduce(concat);
+```
+
+```js
+fold(Sum.empty(), [Sum(1), Sum(2)]); // Sum(3)
+fold(Sum.empty(), []); // Sum(0)
+
+fold(Any.empty(), [Any(false), Any(true)]); // Any(true)
+fold(Any.empty(), []); // Any(false)
+
+fold(Either.of(Max.empty()), [Right(Max(3)), Right(Max(21)), Right(Max(11))]); // Right(Max(21))
+fold(Either.of(Max.empty()), [
+  Right(Max(3)),
+  Left("error retrieving value"),
+  Right(Max(11)),
+]); // Left('error retrieving value')
+
+fold(IO.of([]), [".link", "a"].map($)); // IO([<a>, <button class="link"/>, <a>])
+```
+
+### Not quite a monoid
+
+```js
+const First = (x) => ({ x, concat: (other) => First(x) });
+
+Map({ id: First(123), isPaid: Any(true), points: Sum(13) }).concat(
+  Map({ id: First(2242), isPaid: Any(false), points: Sum(1) })
+);
+// Map({id: First(123), isPaid: Any(true), points: Sum(14)})
+```
+
+We'll merge a couple of accounts and keep the `First` id. There is no way to define an `empty` value for it. Doesn't mean it's not useful.
+
+### Grand unifying theory
+
+### Group theory or Category theory?
+
+The notion of a binary operation is everywhere in abstract algebra. It is, in fact, the primary operation for a category. We cannot, however, model our operation in category theory without an identity. This is the reason we start with a semi-group from group theory, then jump to a monoid in category theory once we have empty.
+
+Monoids form a single object category where the morphism is `concat`, `empty` is the identity, and composition is guaranteed.
+
+- Composition as a monoid
+
+  Functions of type `a -> a`, where the domain is in the same set as the codomain, are called endomorphisms. We can make a monoid called `Endo` which captures this idea:
+
+  ```js
+  const Endo = run => ({
+    run,
+    concat: other =>
+      Endo(compose(run, other.run))
+  })
+
+  Endo.empty = () => Endo(identity)
+
+
+  // in action
+
+  // thingDownFlipAndReverse :: Endo [String] -> [String]
+  const thingDownFlipAndReverse = fold(Endo(() => []), [Endo(reverse), Endo(sort), Endo(append('thing down')])
+
+  thingDownFlipAndReverse.run(['let me work it', 'is it worth it?'])
+  // ['thing down', 'let me work it', 'is it worth it?']
+  ```
+
+  > compose 是 function 的 concatenate 的方法
+
+  Since they are all the same type, we can `concat` via `compose` and the types always line up.
+
+- Monad as a monoid
+
+  You may have noticed that `join` is an operation which takes two (nested) monads and squashes them down to one in an associative fashion. It is also a natural transformation or "functor function". As previously stated, we can make a category of functors as objects with natural transformations as morphisms. Now, if we specialize it to Endofunctors, that is functors of the same type, then `join` provides us with a monoid in the category of Endofunctors also known as a Monad. To show the exact formulation in code takes a little finagling which I encourage you to google, but that's the general idea.
+
+- Applicative as a monoid
+
+  Even applicative functors have a monoidal formulation known in the category theory as a lax monoidal functor. We can implement the interface as a monoid and recover `ap` from it:
+
+  ```js
+  // concat :: f a -> f b -> f [a, b]
+  // empty :: () -> f ()
+
+  // ap :: Functor f => f (a -> b) -> f a -> f b
+  const ap = compose(
+    map(([f, x]) => f(x)),
+    concat
+  );
+  ```
+
+So you see, everything is connected, or can be. This profound realization makes Monoids a powerful modelling tool for broad swaths of app architecture to the tiniest pieces of datum. I encourage you to think of monoids whenever direct accumulation or combination is part of your application, then once you've got that down, start to stretch the definition to more applications (you'd be surprised how much one can model with a monoid).
+
+### reference
+
+Monoid. (2022, September 22). In Wikipedia. https://en.wikipedia.org/wiki/Monoid
 
 ## exercise
 
