@@ -14,6 +14,7 @@
 - :computer:
   - [语言](CS/lang/)
   - [机器学习](CS/Machine-Learning/)
+  - [编程](CS/programming/)
 - :school:
   - [大学](education/university/)
   - [语言](education/LCID/)
