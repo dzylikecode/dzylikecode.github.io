@@ -2,7 +2,7 @@
 
 ## 5v5
 
-:crossed_swords:
+<p style="text-align:center">:crossed_swords:</p>
 
 ### 卡莎
 
@@ -15,6 +15,10 @@
   - RWAQE
 
     分解为 RW, AQ, E
+
+## 计划
+
+- 每天练习补兵技巧, 连招
 
 ## 感想
 
