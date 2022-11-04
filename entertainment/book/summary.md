@@ -1,3 +1,5 @@
 - [:boat:](entertainment/book/README.md)
-- [快速阅读](entertainment/book/quick-reading.md)
-- [temp](entertainment/book/temp1.md)
+- 快速阅读
+  - [观点](entertainment/book/quick-reading/opinion.md)
+  - [措施](entertainment/book/quick-reading/action.md)
+  - [框架](entertainment/book/quick-reading/frame.md)
