@@ -5,6 +5,10 @@
 - [搜索技巧](https://www.businessweekly.com.tw/careers/blog/3002586)
 - [虫部落‐快搜](https://search.chongbuluo.com/)
 
+## news
+
+- [Hacker News](https://news.ycombinator.com/news)
+
 ## 问答网站
 
 - [Stack Overflow](http://stackoverflow.com/)
