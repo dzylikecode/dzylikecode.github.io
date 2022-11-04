@@ -1,9 +1,6 @@
 # hollowness
 
-- alias: ホロネス (Hollowness)
-- author: 美波 (Minami)
-
-## lyrics
+美波 (Minami) - ホロネス (Hollowness)
 
 ```txt
 君は言う「もう楽になれるよ」と
@@ -76,6 +73,6 @@ To virtualize a lie
 You have my word.”
 ```
 
-## feeling
+## feel
 
 当听到`LaLaLa...`, 情不自禁地唱起来, 幻想着自己就是镜子中和她一起跳舞的人, 像牵线木偶一样, 骨头一节一节机械, 僵硬地运动, 内心涌现一种哽咽, 想流泪的悲伤. 自己的感情似乎得到满足, 自己感到充沛.

@@ -3,5 +3,3 @@
 - [红色高跟鞋](/entertainment/music/红色高跟鞋.md)
 - [hollowness](entertainment/music/hollowness.md)
 - [Inside You](entertainment/music/Inside-You.md)
-- [体面](entertainment/music/体面.md)
-- [一万次悲伤](entertainment/music/一万次悲伤.md)
