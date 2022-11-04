@@ -13,10 +13,6 @@
 不做点热爱的,我会刷 B 站,会想意淫,看黄色,玩游戏,非常颓废.
 人是空虚的,不去经营,时间自然会被一些杂乱的东西占有,就像一个花园,不去种花,满满会长满杂草,不去经营,抵抗诱惑,也是会长不少杂草的
 
-首先, 按照进度看完, 中间补足一些时间进行复习, 最后的时候整理为完整的笔记
-
-碰到问题里面记录下来, 然后解决
-
 - 推荐
 
   学习: http://www.itdiffer.com/lessons.html
@@ -24,6 +20,7 @@
 - matlab
 
   https://plotly.com/matlab/LaTeX/
+
   latex(func)
 
 - [git](https://juejin.cn/post/7127956933809537032)
@@ -35,5 +32,3 @@
   [Fisher–Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 
 - [English](https://github.com/codeyu/EnglishGrammarBook)
-
-https://news.ycombinator.com/news
