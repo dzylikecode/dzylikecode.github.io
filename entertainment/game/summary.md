@@ -1,2 +1,3 @@
 - [:boat:](entertainment/game/README.md)
+- [藏品](entertainment/game/collection.md)
 - [LOL](entertainment/game/LOL.md)
