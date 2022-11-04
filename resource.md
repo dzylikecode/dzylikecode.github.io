@@ -1,6 +1,6 @@
 # 资源
 
-## search
+## Search
 
 - [搜索技巧](https://www.businessweekly.com.tw/careers/blog/3002586)
 - [虫部落‐快搜](https://search.chongbuluo.com/)
