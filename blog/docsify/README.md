@@ -21,6 +21,12 @@
 
   market: https://marketplace.visualstudio.com/items?itemName=dzylikecode.docsify-preview
 
+## shortcuts
+
+- `shift + center_mouse_scroll`
+
+  水平滚动滚动条
+
 ## watchlist
 
 - virtualize markdown as mind map

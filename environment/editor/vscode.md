@@ -168,6 +168,10 @@ json 设置时, 编号处会提示如何设置
 
   然后点击, 可以多选鼠标
 
+- `ctrl+shift+c`
+
+  open the new terminal
+
 ### 插件
 
 - translate
