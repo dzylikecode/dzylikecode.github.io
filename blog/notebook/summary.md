@@ -1,5 +1,0 @@
-- [intro](blog/notebook/README.md)
-- [规范](blog/notebook/standard.md)
-- [思考](blog/notebook/thoughts.md)
-- [MarginNote](blog/notebook/MarginNote.md)
-- [metion](blog/notebook/metion.md)
