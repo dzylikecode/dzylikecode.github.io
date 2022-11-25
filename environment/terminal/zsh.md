@@ -20,6 +20,12 @@
 
   > 觉得没有必要, I prefer the default theme
 
+- update
+
+  ```bash
+  omz update
+  ```
+
 ## plugin
 
 1. 打开本地的路径
