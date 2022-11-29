@@ -13,6 +13,12 @@
 
 2. 完成 README 的 TODO
 
+### 想法
+
+将`index.html`放到根目录下, 方便索引到非`docs`的文件夹下, 如果要访问 GitHub 对应的目录练习, 可以点击`edit`当作跳板, 然后就近搜寻
+
+docs 下放置主体的文档
+
 ## VSCode extension
 
 - [Docsify Preview](https://dzylikecode.github.io/VSCodeExt-docsify-Preview/#/)
