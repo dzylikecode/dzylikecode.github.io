@@ -32,3 +32,11 @@
   [Fisher–Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 
 - [English](https://github.com/codeyu/EnglishGrammarBook)
+
+先抓住自己核心想做的, 要求有破坏力地喜欢去做, 不用管什么繁文缛节.
+
+- [ ] [The Art of Computer Programming](https://www.amazon.com/Art-Computer-Programming-Volumes-1-4a/dp/0321751043)
+
+我想做自己喜欢的 game, 人工智能, 数学等等混合起来, 先搞好这套技术
+
+总结还是要总结的, 但是不要占据过多的时间, 把主体的东西挑出来, 节约时间成本, 然后做其他东西, 让自己的生活丰富起来
