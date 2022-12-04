@@ -37,3 +37,15 @@
 - Mathpix
 - [Detexify](http://detexify.kirelabs.org/classify.html)
 - MathKey
+
+## collection
+
+- [奇链](https://www.dbyun.net/)
+
+## physics
+
+- The Feynman Lectures on Physics
+
+  https://news.ycombinator.com/item?id=6380624
+
+  https://www.feynmanlectures.caltech.edu/
