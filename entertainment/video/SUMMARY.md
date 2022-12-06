@@ -1,4 +1,4 @@
-- [:boat:](entertainment/video/README.md)
-- [American Beauty](entertainment/video/American-Beauty.md)
-- [言の葉の庭](entertainment/video/言の葉の庭.md)
-- [응답하라1988](entertainment/video/응답하라1988.md)
+- [:boat:](/entertainment/video/README.md)
+- [American Beauty](/entertainment/video/American-Beauty.md)
+- [言の葉の庭](/entertainment/video/言の葉の庭.md)
+- [응답하라1988](/entertainment/video/응답하라1988.md)

@@ -1,2 +1,2 @@
-- [intro](blog/docsify/README.md)
-- [plugins](blog/docsify/plugins.md)
+- [intro](/blog/docsify/README.md)
+- [plugins](/blog/docsify/plugins.md)

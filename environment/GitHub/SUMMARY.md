@@ -1,1 +1,1 @@
-- [intro](environment/GitHub/README.md)
+- [intro](/environment/GitHub/README.md)

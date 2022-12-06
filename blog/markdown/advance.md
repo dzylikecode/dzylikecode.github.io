@@ -75,6 +75,25 @@
 
         `id1[/This is the text in the box/]`
 
+## link
+
+markdown 内的相对链接(sidebar.md 排除在外):
+
+```html
+<a class="Repos" target="_blank" href="relative/path">github code</a>
+<a class="Pages" target="_blank" href="relative/path">page preview</a>
+```
+
+sidebar:
+
+!> 使用上面的会有副作用, 会随着当前预览的 README 路径而改变, 所以 sidebar 使用下面普通的用法
+
+```html
+<a target="_blank" href="relative/path">github code</a>
+```
+
+这是相对于 `index.html` 的路径
+
 ## emoji
 
 - github markdown:[Emoji](https://gist.github.com/rxaviers/7360908)

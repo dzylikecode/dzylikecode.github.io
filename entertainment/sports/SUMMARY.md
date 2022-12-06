@@ -1,1 +1,1 @@
-- [:boat:](entertainment/sports/README.md)
+- [:boat:](/entertainment/sports/README.md)
