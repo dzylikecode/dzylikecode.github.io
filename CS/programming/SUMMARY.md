@@ -1,5 +1,5 @@
-- [:boat:](CS/programming/README.md)
+- [:boat:](/CS/programming/README.md)
 - Functional Programming
-  - [FP](CS/programming/function/README.md)
-  - [Lambda](CS/programming/function/lambda/lambda.md)
+  - [FP](/CS/programming/function/README.md)
+  - [Lambda](/CS/programming/function/lambda/lambda.md)
 - MetaPragramming

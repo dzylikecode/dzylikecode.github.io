@@ -1,3 +1,3 @@
-- [:boat:](education/LCID/README.md)
+- [:boat:](/education/LCID/README.md)
 - [English](https://dzylikecode.github.io/LCID-en/#/)
 - [Japanese](https://dzylikecode.github.io/LCID-ja/#/)

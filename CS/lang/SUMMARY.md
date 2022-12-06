@@ -1,5 +1,5 @@
-- [intro](CS/lang/README.md)
+- [intro](/CS/lang/README.md)
 - [Python](https://dzylikecode.github.io/lang-py/#/)
 - [JavaScript](https://dzylikecode.github.io/lang-js/#/)
-- [TypeScript](CS/lang/lang-ts.md)
+- [TypeScript](/CS/lang/lang-ts.md)
 - [MATLAB](https://dzylikecode.github.io/lang-mat/#/)
