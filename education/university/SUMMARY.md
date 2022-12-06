@@ -1,2 +1,2 @@
-- [intro](education/university/README.md)
+- [intro](/education/university/README.md)
 - [本科教育](https://dzylikecode.github.io/SCUT-Electromechanical/#/)

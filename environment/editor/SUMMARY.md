@@ -1,3 +1,3 @@
-- [:boat:](environment/editor/README.md)
-- [vscode](environment/editor/vscode.md)
-- [插件开发](environment/editor/extension-develop.md)
+- [:boat:](/environment/editor/README.md)
+- [vscode](/environment/editor/vscode.md)
+- [插件开发](/environment/editor/extension-develop.md)

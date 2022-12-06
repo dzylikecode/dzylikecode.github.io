@@ -1,2 +1,2 @@
-- [intro](environment/git/README.md)
-- [issue](environment/git/issue.md)
+- [intro](/environment/git/README.md)
+- [issue](/environment/git/issue.md)
