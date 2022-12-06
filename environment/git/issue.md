@@ -15,3 +15,9 @@ git config core.ignorecase false
 > 最好是重命名为其他文件提交, 然后再次重命名
 
 直接使用 `git mv` 能够解决问题
+
+## connection refused
+
+### DNS pollution
+
+[git 访问 github 失败 Connection refused 解决方案](https://www.shouxicto.com/article/5947.html)
