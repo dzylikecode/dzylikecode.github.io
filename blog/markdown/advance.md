@@ -94,6 +94,8 @@ sidebar:
 
 这是相对于 `index.html` 的路径
 
+`/` 是以 repos 和 page 作为 root 的绝对路径, 统一使用这种路径作为 sidebar 的链接
+
 ## emoji
 
 - github markdown:[Emoji](https://gist.github.com/rxaviers/7360908)
