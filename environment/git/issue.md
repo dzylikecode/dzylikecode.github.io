@@ -21,3 +21,17 @@ git config core.ignorecase false
 ### DNS pollution
 
 [git 访问 github 失败 Connection refused 解决方案](https://www.shouxicto.com/article/5947.html)
+
+需要权限修改
+
+```bash
+sudo vim /etc/hosts
+```
+
+添加
+
+```bash
+# GitHub
+20.205.243.166  github.com
+20.205.243.160  ssh.github.com
+```
