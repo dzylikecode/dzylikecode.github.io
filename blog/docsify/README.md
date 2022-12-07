@@ -21,6 +21,8 @@ docs 下放置主体的文档
 
 根据 template-docsify 生成新的 template, 进行抽象, 比如可以生产数学的, 有 conda 的配置
 
+> 抽象是来源于重复, `无`是对`有`的抽象
+
 ## VSCode extension
 
 - [Docsify Preview](https://dzylikecode.github.io/VSCodeExt-docsify-Preview/#/)
