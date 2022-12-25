@@ -40,3 +40,12 @@
 我想做自己喜欢的 game, 人工智能, 数学等等混合起来, 先搞好这套技术
 
 总结还是要总结的, 但是不要占据过多的时间, 把主体的东西挑出来, 节约时间成本, 然后做其他东西, 让自己的生活丰富起来
+
+## 智能提示
+
+- [CodeGeeX](https://github.com/THUDM/CodeGeeX)
+- [codegeex-vscode-extension](https://github.com/CodeGeeX/codegeex-vscode-extension)
+
+## notebook
+
+- https://ipypublish.readthedocs.io/en/latest/getting_started.html
