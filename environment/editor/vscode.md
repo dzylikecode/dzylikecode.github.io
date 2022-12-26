@@ -239,6 +239,14 @@ json 设置时, 编号处会提示如何设置
   - 地址栏输入 `%userprofile%` 回车
   - 删除 `.vscode` 文件夹
 
+## settings
+
+format
+
+```json
+"editor.defaultFormatter": "esbenp.prettier-vscode"
+```
+
 ## reference
 
 - Visual Studio Code 权威指南 by 韩骏
