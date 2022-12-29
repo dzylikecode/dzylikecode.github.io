@@ -179,6 +179,14 @@ export http_proxy="http://${hostip}:7890";
 - test
   > `curl google.com`
 
+---
+
+取消当前 shell 的代理
+
+```bash
+unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY
+```
+
 ## language
 
 - [WSL-gedit 中显示中文(解决中文乱码)](https://blog.csdn.net/weixin_41714373/article/details/119519589)
