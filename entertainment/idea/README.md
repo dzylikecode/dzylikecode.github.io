@@ -49,3 +49,7 @@
 ## notebook
 
 - https://ipypublish.readthedocs.io/en/latest/getting_started.html
+
+## CI
+
+https://semaphoreci.com/blog/cicd-pipeline
