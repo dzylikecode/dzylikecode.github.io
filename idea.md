@@ -88,3 +88,7 @@ https://github.com/MiaadTeam/lesvim
 ## chatGPT
 
 - [ChatGPT for Jupyter](https://github.com/TiesdeKok/chat-gpt-jupyter-extension)
+
+## python
+
+game: https://github.com/grantjenks/free-python-games
