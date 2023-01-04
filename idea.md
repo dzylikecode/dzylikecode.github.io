@@ -92,3 +92,7 @@ https://github.com/MiaadTeam/lesvim
 ## python
 
 game: https://github.com/grantjenks/free-python-games
+
+## docx
+
+preview: https://view.officeapps.live.com/op/view.aspx?src=
