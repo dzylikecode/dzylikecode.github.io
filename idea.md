@@ -96,3 +96,38 @@ game: https://github.com/grantjenks/free-python-games
 ## docx
 
 preview: https://view.officeapps.live.com/op/view.aspx?src=
+
+## 2D life
+
+software
+
+view my life as a plain text file, open a book
+
+simulate git
+
+```txt
+2022/1/2---
+|         |
+|         |--- read haskell
+|         |--- read rust: failed(red tag)
+2022/1/3---
+|         |--- teach(block)
+|         |--- github repos: ...(link) // it stores the similiar graph recursively
+|
+2022/1/4
+...
+block teach
+          |--- a boy(senior school) 9:00-11:30 by car
+          |--- a girl(senior school) 14:30-17:10 by eletric car
+```
+
+record my a block time with a simple sentence abstractly
+
+- comment: `//`
+- a branch
+
+  maybe a new birth of life
+
+- merge
+
+  may become friends or couples
