@@ -131,3 +131,9 @@ record my a block time with a simple sentence abstractly
 - merge
 
   may become friends or couples
+
+linux tree: https://github.com/kddnewton/tree/blob/main/tree.js
+
+## group
+
+https://www.jmilne.org/math/CourseNotes/GT.pdf
