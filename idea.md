@@ -132,8 +132,16 @@ record my a block time with a simple sentence abstractly
 
   may become friends or couples
 
+可以参照昨天, 思考今天什么
+
+mindmap: https://github.com/drichard/mindmaps
+
 linux tree: https://github.com/kddnewton/tree/blob/main/tree.js
 
 ## group
 
 https://www.jmilne.org/math/CourseNotes/GT.pdf
+
+## algorithm
+
+https://github.com/krahets/hello-algo
