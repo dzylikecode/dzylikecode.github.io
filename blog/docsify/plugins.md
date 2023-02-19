@@ -688,6 +688,15 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-git.min.js"></script>
   ```
 
+- cpp
+
+  需要同时导入 c 文件
+
+  ```html
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+  ```
+
 ## iframe style
 
 - head

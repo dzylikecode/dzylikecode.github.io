@@ -136,7 +136,23 @@ record my a block time with a simple sentence abstractly
 
 mindmap: https://github.com/drichard/mindmaps
 
+https://github.com/kennethkufluk/js-mindmap
+
 linux tree: https://github.com/kddnewton/tree/blob/main/tree.js
+
+- [📚 华章计算机科学丛书高清扫描](https://github.com/apachecn/huazhang-cs-books)
+
+https://pomb.us/
+
+https://mdxjs.com/docs/getting-started/
+
+https://github.com/pomber/git-history : 专注于项目
+
+https://github.com/gitahead/gitahead
+
+https://github.com/code-hike/codehike
+
+https://github.com/hoxu/gitstats
 
 ## group
 
@@ -145,3 +161,49 @@ https://www.jmilne.org/math/CourseNotes/GT.pdf
 ## algorithm
 
 https://github.com/krahets/hello-algo
+
+## deps
+
+deps: https://docs.travis-ci.com/
+
+## contact with myself
+
+和自己对话, 反思自己哪里没有做好, 然后如何改进
+
+## xstate
+
+vscode extension
+
+- [This Library Makes State Management So Much Easier](https://www.youtube.com/watch?v=s0h34OkEVUE)
+
+  repos: https://github.com/statelyai/xstate
+
+## Game
+
+[Game AI Pro](http://www.gameaipro.com/)
+
+## idea
+
+https://www.youtube.com/watch?v=H5GETOP7ivs
+
+https://motion-canvas.github.io/docs/quickstart
+
+repos: https://github.com/motion-canvas/motion-canvas
+
+## python
+
+https://realpython.com/
+
+## math
+
+sage math
+
+https://cocalc.com/drxyzzy/hearts/hearts-jupyter
+
+https://cocalc.com/share/public_paths/8b892baf91f98d0cf6172b872c8ad6694d0f7204/README.md
+
+https://jakevdp.github.io/PythonDataScienceHandbook/
+
+## DL
+
+https://github.com/ChristosChristofidis/awesome-deep-learning

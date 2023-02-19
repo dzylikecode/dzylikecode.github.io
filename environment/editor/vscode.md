@@ -247,6 +247,8 @@ format
 "editor.defaultFormatter": "esbenp.prettier-vscode"
 ```
 
+- [What is the difference between launch.json and task.json in visual studio code?](https://stackoverflow.com/questions/41483477/what-is-the-difference-between-launch-json-and-task-json-in-visual-studio-code)
+
 ## reference
 
 - Visual Studio Code 权威指南 by 韩骏
