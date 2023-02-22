@@ -207,3 +207,7 @@ https://jakevdp.github.io/PythonDataScienceHandbook/
 ## DL
 
 https://github.com/ChristosChristofidis/awesome-deep-learning
+
+## blog
+
+https://github.com/trekhleb/trekhleb.github.io

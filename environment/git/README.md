@@ -59,6 +59,8 @@
 
 ### ssh
 
+- [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
 连接 GitHub
 
 - generate key

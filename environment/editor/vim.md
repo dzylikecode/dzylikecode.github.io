@@ -116,3 +116,9 @@ nvim ~/.config/nvim/plug-config/coc.vim
 复制官网给的配置[example](https://github.com/neoclide/coc.nvim#example-vim-configuration)
 
 - config `coc`: `:CocConfig`
+
+## window
+
+https://www.baeldung.com/linux/vim-windows
+
+o: 可以原地打开
