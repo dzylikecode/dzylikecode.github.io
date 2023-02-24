@@ -211,3 +211,20 @@ https://github.com/ChristosChristofidis/awesome-deep-learning
 ## blog
 
 https://github.com/trekhleb/trekhleb.github.io
+
+## wsl
+
+# download
+
+- 百度网盘
+  > 下载 : `sudo dpkg -i baidunetdisk_linux_x.x.x.deb`
+  > 卸载 : `sudo apt-get --purge remove baidunetdisk`
+- boost
+
+  > sudo apt-get install libboost-all-dev
+  > apt-get --purge remove libboost-dev libboost-doc
+
+- logger
+
+> `sudo apt install libspdlog-dev`
+> address: [https://github.com/gabime/spdlog](https://github.com/gabime/spdlog) > [tutorial](https://github.com/gabime/spdlog/wiki/1.-QuickStart#basic-example)
