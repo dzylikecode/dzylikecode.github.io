@@ -7,7 +7,7 @@
 
 ## template
 
-[](template.html ":include :type=code html")
+<a class="Repos" target="_blank" href="./template.html">template</a>
 
 1. create a repo in the GitHub UI with the template
 
@@ -18,6 +18,10 @@
 将`index.html`放到根目录下, 方便索引到非`docs`的文件夹下, 如果要访问 GitHub 对应的目录练习, 可以点击`edit`当作跳板, 然后就近搜寻
 
 docs 下放置主体的文档
+
+根据 template-docsify 生成新的 template, 进行抽象, 比如可以生产数学的, 有 conda 的配置
+
+> 抽象是来源于重复, `无`是对`有`的抽象
 
 ## VSCode extension
 

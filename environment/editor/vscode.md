@@ -239,6 +239,16 @@ json 设置时, 编号处会提示如何设置
   - 地址栏输入 `%userprofile%` 回车
   - 删除 `.vscode` 文件夹
 
+## settings
+
+format
+
+```json
+"editor.defaultFormatter": "esbenp.prettier-vscode"
+```
+
+- [What is the difference between launch.json and task.json in visual studio code?](https://stackoverflow.com/questions/41483477/what-is-the-difference-between-launch-json-and-task-json-in-visual-studio-code)
+
 ## reference
 
 - Visual Studio Code 权威指南 by 韩骏

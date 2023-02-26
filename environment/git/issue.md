@@ -18,9 +18,15 @@ git config core.ignorecase false
 
 ## connection refused
 
-### DNS pollution
-
 [git 访问 github 失败 Connection refused 解决方案](https://www.shouxicto.com/article/5947.html)
+
+> DNS pollution
+
+## timeout
+
+- [ssh: connect to host github.com port 22: Connection timed out](https://stackoverflow.com/questions/15589682/ssh-connect-to-host-github-com-port-22-connection-timed-out)
+
+> because of proxy
 
 需要权限修改
 

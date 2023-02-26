@@ -16,3 +16,9 @@ repo: https://github.com/nvbn/thefuck#experimental-instant-mode
    export PATH="/home/$USER/.local/bin:$PATH"
    eval $(thefuck --alias)
    ```
+
+> 还不成熟, 不使用
+
+```bash
+pip3 uninstall thefuck
+```

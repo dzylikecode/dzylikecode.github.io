@@ -4,6 +4,14 @@
 
 - [markdown](https://markdown.cn/)
 
+- 划分层级
+
+  `---`
+
+- 换行
+
+  行末加两个空格, 然后换行
+
 ## emoji
 
 https://github.com/ikatyang/emoji-cheat-sheet
