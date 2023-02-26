@@ -228,3 +228,19 @@ https://github.com/trekhleb/trekhleb.github.io
 
 > `sudo apt install libspdlog-dev`
 > address: [https://github.com/gabime/spdlog](https://github.com/gabime/spdlog) > [tutorial](https://github.com/gabime/spdlog/wiki/1.-QuickStart#basic-example)
+
+## extension
+
+https://www.similarsites.com/welcome
+
+chrome-extension://dgjhfomjieaadpoljlnidmbgkdffpack/after_install.html
+
+https://www.tampermonkey.net/index.php?version=4.19.6177&ext=gcal&updated=true
+
+## philosophy
+
+反思自我, 认识到自己的缺点也是强大. 把缺点和优势统一起来考虑, 可以认识到自己的缺点也是为了优点而合理分配的. 为了某方面的强大, 不得不放弃另一方面, 弱点因此而产生. 这是一种合理分配的策略
+
+## delete file
+
+https://answers.microsoft.com/en-us/windows/forum/all/i-cant-delete-files-but-need-permission-and-cant/d87528f9-9589-4786-8bc5-4d6db0b30637
