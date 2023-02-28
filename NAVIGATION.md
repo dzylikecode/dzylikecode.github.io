@@ -1,4 +1,3 @@
-- [:house:](/)
 - :notebook:
   - [docsify](/blog/docsify/)
   - [markdown](/blog/markdown/)
