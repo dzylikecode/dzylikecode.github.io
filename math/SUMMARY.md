@@ -1,1 +1,2 @@
 - [:boat:](math/README.md)
+- [latex](/math/latex.md)
