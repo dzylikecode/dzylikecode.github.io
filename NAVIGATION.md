@@ -1,4 +1,3 @@
-- [:house:](/)
 - :notebook:
   - [docsify](/blog/docsify/)
   - [markdown](/blog/markdown/)
@@ -11,6 +10,9 @@
   - [终端](/environment/terminal/)
   - [工具箱](/environment/kit/)
   - [Linux](/environment/OS/Linux/)
+- :triangular_ruler:
+  - [math](/math/)
+  - linear algebra
 - :computer:
   - [语言](/CS/lang/)
   - [机器学习](/CS/Machine-Learning/)

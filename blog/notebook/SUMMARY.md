@@ -2,4 +2,4 @@
 - [规范](/blog/notebook/standard.md)
 - [思考](/blog/notebook/thoughts.md)
 - [MarginNote](/blog/notebook/MarginNote.md)
-- [metion](/blog/notebook/metion.md)
+- [metion](/blog/notebook/Metion.md)

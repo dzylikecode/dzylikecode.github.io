@@ -34,3 +34,6 @@
   感受到一种病态, 异乎寻常热爱的病态
 
 - one day
+
+- [wildest dreams](https://www.youtube.com/watch?v=IdneKLhsWOQ)
+- young and beautiful
