@@ -282,3 +282,21 @@ example:
 ## 摸鱼
 
 https://goldfishies.com/
+
+## OS
+
+https://pdos.csail.mit.edu/6.828/2018/schedule.html
+
+http://littleosbook.github.io/
+
+https://github.com/littleosbook/littleosbook
+
+https://github.com/hoverwinter/HIT-OSLab
+
+https://www.zhihu.com/question/23896915
+
+https://abelay.github.io/6828seminar/schedule.html
+
+## chatGPT
+
+https://www.youtube.com/watch?v=hfQ4ER4sd4U
