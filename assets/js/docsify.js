@@ -1,5 +1,5 @@
 window.$docsify = {
-  name: "abstract container", // 目录的标题
+  name: "Tree", // 目录的标题
   repo: repoLink, // 右上角的挂件
   loadNavbar: "NAVIGATION.md",
   loadSidebar: "SUMMARY.md",
