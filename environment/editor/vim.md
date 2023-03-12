@@ -83,7 +83,11 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 
 ```vim
 call plug#begin('~/.config/nvim/autoload/plugged')
+<<<<<<< HEAD
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+=======
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+>>>>>>> master
 call plug#end()
 ```
 

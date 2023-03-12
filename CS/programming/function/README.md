@@ -1690,6 +1690,8 @@ Monoid. (2022, September 22). In Wikipedia. https://en.wikipedia.org/wiki/Monoid
 
   example
 
+- [Functional-Light JavaScript](https://github.com/getify/Functional-Light-JS)
+
 - [Why Category Theory Matters](https://rs.io/why-category-theory-matters/)
 
 - [homomorphism](https://www.britannica.com/science/homomorphism)
@@ -1720,10 +1722,6 @@ https://www.zhihu.com/question/36782552
 
 https://www.zhihu.com/question/28292740
 
-约束自由, 解决问题的能力不变
-
-https://www.mathsisfun.com/ a good math website
-
 https://refactoring.com/
 
 https://github.com/xgrommx/awesome-functional-programming
@@ -1745,5 +1743,3 @@ https://networkx.org/
   [Using functional programming to create a game in JS](https://cheesecakelabs.com/blog/functional-programming-game-js/)
 
   repo: [functional-spaceship-game](https://github.com/karranb/functional-spaceship-game)
-
-- [Functional-Light JavaScript](https://github.com/getify/Functional-Light-JS)

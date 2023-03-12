@@ -35,6 +35,12 @@
     ui = auto​​
   ```
 
+- Change git init default branch name
+
+  ```bash
+  git config --global init.defaultBranch master
+  ```
+
 - 换行符
 
   - Linux

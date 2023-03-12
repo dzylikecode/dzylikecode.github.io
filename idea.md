@@ -211,3 +211,95 @@ https://github.com/ChristosChristofidis/awesome-deep-learning
 ## blog
 
 https://github.com/trekhleb/trekhleb.github.io
+<<<<<<< HEAD
+=======
+
+## wsl
+
+# download
+
+- 百度网盘
+  > 下载 : `sudo dpkg -i baidunetdisk_linux_x.x.x.deb`
+  > 卸载 : `sudo apt-get --purge remove baidunetdisk`
+- boost
+
+  > sudo apt-get install libboost-all-dev
+  > apt-get --purge remove libboost-dev libboost-doc
+
+- logger
+
+> `sudo apt install libspdlog-dev`
+> address: [https://github.com/gabime/spdlog](https://github.com/gabime/spdlog) > [tutorial](https://github.com/gabime/spdlog/wiki/1.-QuickStart#basic-example)
+
+## extension
+
+https://www.similarsites.com/welcome
+
+chrome-extension://dgjhfomjieaadpoljlnidmbgkdffpack/after_install.html
+
+https://www.tampermonkey.net/index.php?version=4.19.6177&ext=gcal&updated=true
+
+## philosophy
+
+反思自我, 认识到自己的缺点也是强大. 把缺点和优势统一起来考虑, 可以认识到自己的缺点也是为了优点而合理分配的. 为了某方面的强大, 不得不放弃另一方面, 弱点因此而产生. 这是一种合理分配的策略
+
+## delete file
+
+https://answers.microsoft.com/en-us/windows/forum/all/i-cant-delete-files-but-need-permission-and-cant/d87528f9-9589-4786-8bc5-4d6db0b30637
+
+## issue
+
+当前的页面有个问题: 虽然在学习的过程是一个时间上线性的模型, 但在逻辑上, 有些内容我不能立即阅读完, 而是拓展的内容, 应该是像'队列'一样, 暂时能移入到队列中
+
+单单的一维的纵向结构不能良好地表达思考, 需要有一个横向的结构, 同时二者结构能够交互. 可以试试往 monad 方向想想
+
+总结: 当前布局限制了表达, 反作用于限制了思考
+
+---
+
+时间上也有一个问题: 我有其他的事情会打断当前的思考, 需要一种方式类似于 stack, 可以 push, 冻结当前的事务, 下次有时间再来 pop
+
+我想保证我思考的连续
+
+example:
+
+- 我在看某些文章, 有些概念不懂, 或者看看什么拓展的资料. 为保证阅读文章的连贯, 我应该继续阅读, 而这些衍生的东西, 应该能放到队列当中
+- 睡觉, 吃饭, 娱乐都会打断我的思考, 我从哪里回复思考是个问题
+
+已有的方案:
+
+- 当某个问题深深困扰我的时候, 睡觉在梦里都会思考
+- 当睡前有某种粗略的解决方案的时候, 一早醒来会立马接着原来的思考继续
+
+!> 问题是这需要我真心地被这个问题缠绕住了, 很难进入这个状态, 一般在数学和编程上面. 在英语问题上面, 完全不行
+
+---
+
+希望将上述的思考进一步抽象, 看到有什么模式存在, 然后能够实现自动化
+
+## ui
+
+添加对话形式的渲染
+
+## 摸鱼
+
+https://goldfishies.com/
+
+## OS
+
+https://pdos.csail.mit.edu/6.828/2018/schedule.html
+
+http://littleosbook.github.io/
+
+https://github.com/littleosbook/littleosbook
+
+https://github.com/hoverwinter/HIT-OSLab
+
+https://www.zhihu.com/question/23896915
+
+https://abelay.github.io/6828seminar/schedule.html
+
+## chatGPT
+
+https://www.youtube.com/watch?v=hfQ4ER4sd4U
+>>>>>>> master
