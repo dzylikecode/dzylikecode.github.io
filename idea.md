@@ -211,8 +211,6 @@ https://github.com/ChristosChristofidis/awesome-deep-learning
 ## blog
 
 https://github.com/trekhleb/trekhleb.github.io
-<<<<<<< HEAD
-=======
 
 ## wsl
 
@@ -302,4 +300,3 @@ https://abelay.github.io/6828seminar/schedule.html
 ## chatGPT
 
 https://www.youtube.com/watch?v=hfQ4ER4sd4U
->>>>>>> master
