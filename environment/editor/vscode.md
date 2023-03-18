@@ -158,7 +158,15 @@ json 设置时, 编号处会提示如何设置
 
 - `ctrl+P`
 
-  文件跳转
+  文件跳转, 切换
+
+- `ctrl+shift+o`
+
+  寻找函数名, 快速定位块
+
+- `ctrl+g`
+
+  快速定位行
 
 - `alt+shift`
 
@@ -171,6 +179,46 @@ json 设置时, 编号处会提示如何设置
 - `ctrl+shift+c`
 
   open the new terminal
+
+- `ctrl+b`
+
+  关闭侧边栏
+
+- `ctrl+\`
+
+  侧边栏
+
+- `ctrl+num` 或者 `alt+ARROW`
+
+  切换侧边栏
+
+- `ctrl+ARROW`
+
+  跳过单词
+
+  可以结合`shift`选择快速选中多个单词
+
+- `ctrl+x`
+
+  可以用来删除整行(剪切), 不用选中任何
+
+- `alt+shift+ARROW`
+
+  复制选中的行(包括多行)
+
+- `ctrl+d`
+
+  选中下一个与选中相同的单词
+
+- `alt+ARROW`
+
+  将当前行与上下行进行交换
+
+### skill
+
+- 创建深层次文件
+
+  `hello/test.py`, 可以连同文件夹一起创建
 
 ### 插件
 
