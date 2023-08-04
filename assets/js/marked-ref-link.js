@@ -41,9 +41,45 @@
 
 (function () {
   function main(hook, vm) {
+    /**
+     * @type {HTMLElement}
+     */
+    let targetElem = null;
     hook.doneEach(function () {
       const linkMap = setLinkMap();
       setSupIndex(linkMap);
+    });
+    hook.ready(() => {
+      vm.router.onchange((params) => {
+        // console.log(params);
+        // console.log(vm.route);
+        if (params.source == "navigate") {
+          if (targetElem != null) {
+            targetElem.classList.remove("target");
+            targetElem == null;
+          }
+        }
+        if (params.source == "history") {
+          /**
+           * @type {string}
+           */
+          const id = vm.route.query?.id ?? "";
+          const refIdRule = /^cite_ref-(.*)$/;
+          const noteIdRule = /^cite_note-(.*)$/;
+          if (targetElem != null) {
+            targetElem.classList.remove("target");
+            targetElem == null;
+          }
+          if (refIdRule.test(id)) {
+            targetElem = document.querySelector(`#${id}`);
+            targetElem.classList.add("target");
+          } else if (noteIdRule.test(id)) {
+            targetElem = document.querySelector(`#${id}`);
+            targetElem = getParentLi(targetElem) ?? targetElem;
+            targetElem.classList.add("target");
+          }
+        }
+      });
     });
   }
   function setLinkMap() {
@@ -59,8 +95,8 @@
     return linkMap;
     // get the index of parent element(order list)
     function getParentIndex(link) {
-      const $parent = link.parentNode;
-      if ($parent.tagName != "LI") return;
+      const $parent = getParentLi(link);
+      if ($parent == undefined) return;
       let li = $parent;
       let i = 1;
 
@@ -98,6 +134,13 @@
       const key = id.replace(/^cite_ref/, "");
       return key;
     }
+  }
+
+  function getParentLi(link) {
+    if (link == undefined) return;
+    if (link.parentElement == undefined) return;
+    if (link.parentElement.tagName == "LI") return link.parentElement;
+    else return getParentLi(link.parentElement);
   }
   function install() {
     docsifyPlugins.push(main);

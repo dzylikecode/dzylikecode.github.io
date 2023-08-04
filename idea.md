@@ -300,3 +300,38 @@ https://abelay.github.io/6828seminar/schedule.html
 ## chatGPT
 
 https://www.youtube.com/watch?v=hfQ4ER4sd4U
+
+## read code
+
+[Code Reading Club](https://codereading.club/)
+
+[代码巴士 - 分享有价值的 C/C++ 知识和源代码](https://codebus.cn/)
+
+[easyx · GitHub Topics](https://github.com/topics/easyx)
+
+## AI picture
+
+[civitai/civitai: A repository of models, textual inversions, and more](https://github.com/civitai/civitai)
+
+https://yige.baidu.com/
+
+https://civitai.com/
+
+1. [LC1332/Chinese-alpaca-lora: 骆驼:A Chinese finetuned instruction LLaMA. Developed by 陈启源 @ 华中师范大学 & 李鲁鲁 @ 商汤科技 & 冷子昂 @ 商汤科技](https://github.com/LC1332/Chinese-alpaca-lora)
+2. [SmacUL/NewsRecommend: 新闻推荐系统.](https://github.com/SmacUL/NewsRecommend)
+3. [chengstone/movie_recommender: MovieLens based recommender system.使用 MovieLens 数据集训练的电影推荐系统。](https://github.com/chengstone/movie_recommender)
+
+## AI
+
+https://chatprogram.tech/app/
+
+[ChatProgram 内测 demo\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Js4y1D7Rd/?spm_id_from=333.337.search-card.all.click&vd_source=6add1831596bc5dbd4a2d897a629ddd9)
+
+[ChatProgram 产品主页](https://chatprogram.tech/)
+
+## docisfy
+
+[Scroll sync markdown editor with markdown preview (#44454) · microsoft/vscode@2279b4d](https://github.com/microsoft/vscode/commit/2279b4d252f1bee483d8f0954ca86a8f6e691104)
+[javascript - Ace Scroll Sync with Preview : Get line height of wrapped lines - Stack Overflow](https://stackoverflow.com/questions/31024191/ace-scroll-sync-with-preview-get-line-height-of-wrapped-lines)
+
+[chee (chee)](https://github.com/chee)

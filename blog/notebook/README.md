@@ -67,6 +67,12 @@
 
   > 认可由不完美到完美, 接受局部的混乱, 给自己成长的空间
 
+- 网页的引用可以采用插件[Copy Title and Url as Markdown Style](https://chrome.google.com/webstore/detail/copy-title-and-url-as-mar/fpmbiocnfbjpajgeaicmnjnnokmkehil?hl=zh-CN)
+
+  more to see: https://chrome.google.com/webstore/search/markdown%20title?hl=zh-CN
+
+  到时候可以看看油猴的
+
 ## 流程
 
 - 上课时, 记录关键字

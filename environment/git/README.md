@@ -1,90 +1,5 @@
 # Git
 
-## 配置
-
-克隆或创建 repo 的时候, 在`.git`的文件夹下有一个`config`文件可以查看里面的信息
-
-### 全局配置
-
-- name and mail
-
-  ```bash
-  git config --global user.name "Firstname Lastname"
-
-  git config --global user.email "your_email@example.com"​​
-  ```
-
-  会在`~/.gitconfig`中以如下形式输出设置文件
-
-  ```ini
-  ​​[user]
-    name = Firstname Lastname
-    email = your_email@example.com​​
-  ```
-
-- better print
-
-  ```bash
-  git config --global color.ui auto​​
-  ```
-
-  `~/.gitconfig`中会增加下面一行
-
-  ```ini
-  ​​[color]
-    ui = auto​​
-  ```
-
-- Change git init default branch name
-
-  ```bash
-  git config --global init.defaultBranch master
-  ```
-
-- 换行符
-
-  - Linux
-
-    ```bash
-    git config --global core.autocrlf input
-    ```
-
-  - Windows
-
-    ```bash
-    git config --global core.autocrlf true
-    ```
-
-  - 不转化
-
-    不推荐
-
-    ```bash
-    git config --global core.autocrlf false
-    ```
-
-### ssh
-
-- [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-连接 GitHub
-
-- generate key
-
-  ```bash
-  ssh-keygen -t rsa -C "your_email@example.com"
-  ```
-
-  !> 最好直接`enter`,设置密码会导致提交到时候总要密码
-
-  id_rsa 文件是私有密钥, id_rsa.pub 是公开密钥
-
-- test
-
-  ```bash
-  ssh -T git@github.com
-  ```
-
 ## 基本原理
 
 ### 文件的状态
@@ -744,6 +659,12 @@ gitGraph
 
   push all tag
 
+### branch
+
+```bash
+git checkout tags/<tag_name> -b <branch_name>
+```
+
 ## remote
 
 在克隆仓库后会自动添加一个`origin`的远程仓库(指向的就是被克隆的仓库)
@@ -923,3 +844,4 @@ man git
 - [Pro Git](http://git-scm.com/book/zh/v1)
 - [LearnGitBranching](http://pcottle.github.io/learnGitBranching/)
 - [tryGit](http://try.github.io/)
+- [git clone - Download a specific tag with Git - Stack Overflow](https://stackoverflow.com/questions/791959/download-a-specific-tag-with-git)

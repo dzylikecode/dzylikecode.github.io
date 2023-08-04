@@ -17,3 +17,7 @@
 - 调用其他语言
 - 导入库
 - 运行
+
+---
+
+functional programming, 推荐 Haskell, 感觉这个才能学到其中的精髓

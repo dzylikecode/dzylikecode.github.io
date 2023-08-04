@@ -24,8 +24,6 @@ git config core.ignorecase false
 
 ## timeout
 
-- [ssh: connect to host github.com port 22: Connection timed out](https://stackoverflow.com/questions/15589682/ssh-connect-to-host-github-com-port-22-connection-timed-out)
-
 > because of proxy
 
 需要权限修改
@@ -41,3 +39,7 @@ sudo vim /etc/hosts
 20.205.243.166  github.com
 20.205.243.160  ssh.github.com
 ```
+
+## References
+
+1. [git - ssh: connect to host github.com port 22: Connection timed out - Stack Overflow](https://stackoverflow.com/questions/15589682/ssh-connect-to-host-github-com-port-22-connection-timed-out)
