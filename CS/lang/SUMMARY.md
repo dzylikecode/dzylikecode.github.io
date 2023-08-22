@@ -1,6 +1,2 @@
 - [:boat:](/CS/lang/README.md)
-- [Python](https://dzylikecode.github.io/lang-py/)
-- [js & ts](https://dzylikecode.github.io/lang-js/)
-- [MATLAB](https://dzylikecode.github.io/lang-mat/)
-- [Lua](https://dzylikecode.github.io/lang-lua/)
-- [Haskell](https://dzylikecode.github.io/lang-hs/)
+- [Haskell](/CS/lang/Haskell.md)
