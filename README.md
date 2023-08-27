@@ -15,3 +15,5 @@
 ## 摸鱼技巧
 
 开一个新的桌面听歌
+
+看看这个: [xiaolai (xiaolai)](https://github.com/xiaolai)

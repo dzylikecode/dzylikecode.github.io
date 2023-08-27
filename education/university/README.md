@@ -16,14 +16,6 @@
 
   - [莫烦 python](https://dzylikecode.github.io/Python-Learning/#/)
 
-- javascript
-
-  - [javascript](https://dzylikecode.github.io/javascript-learning/#/)
-
-- japanese
-
-  - [日语学习](https://dzylikecode.github.io/Japanese-Learning/#/)
-
 ### 生物
 
 - [普通生物学](https://dzylikecode.github.io/general-biology/#/)
